@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Logic</title>
+</head>
+<body>
+    <div>
+        <h3>1) union() method returns the union of two sets</h3>
+        <p id="1"></p>
+        <script>
+            const A = new Set(['a','b','c']);
+            const B = new Set(['b','c','d']);
+
+            const C = A.union(B);
+
+            let text1 = "";
+            for(const x of C) {
+                text1 += x;
+            }
+            document.getElementById("1").innerHTML = `Union of A and B: ${text1}`;  // abcd
+        </script>
+    </div>
+
+    <div>
+        <h3>2) intersection() method returns the intersection of two sets.</h3>
+        <p id="2"></p>
+        <script>
+            const D = A.intersection(B);
+
+            let text2 = "";
+            for(const x of D) {
+                text2 += x;
+            }
+            document.getElementById("2").innerHTML = `Intersection of A and B: ${text2}`;  // bc
+        </script>
+    </div>
+
+    <div>
+        <h3>3) difference() method returns the difference between two sets.</h3>
+        <p id="3"></p>
+        <script>
+            const E = A.difference(B);
+
+            let text3 = "";
+            for(const x of E) {
+                text3 += x;
+            }
+            document.getElementById("3").innerHTML = `A difference B (A inu B): ${text3}`;  // a
+        </script>
+    </div>
+
+    <div>
+        <h3>4) symmetricDifference() method returns the symmetric difference between to sets.</h3>
+        <p id="4"></p>
+        <script>
+            const F = A.symmetricDifference(B);
+
+            let text4 = "";
+            for(const x of F) {
+                text4 += x;
+            }
+            document.getElementById("4").innerHTML = `symmetricDifference of A and B: ${text4}`;  // ad
+        </script>
+    </div>
+
+    <div>
+        <h3>5) isSubsetOf() method returns true if all elements in this set is also elements in the argument set.</h3>
+        <p id="5"></p>
+        <script>
+            const answer = A.isSubsetOf(B);
+            document.getElementById("5").innerHTML = `A isSubsetOf(B): ${answer}`;  // false
+        </script>
+    </div>
+
+    <div>
+        <h3>6) isSupersetOf() method returns true if all elements in the argument set are also in this set:</h3>
+        <p id="6"></p>
+        <script>
+            const answer1 = A.isSupersetOf(B);
+            document.getElementById("6").innerHTML = `A isSubsetOf(B): ${answer1}`;  // false
+        </script>
+    </div>
+
+    <div>
+        <h3>7) isDisjointFrom() method returns true if this set has no elements in common with the argument set:</h3>
+        <p id="7"></p>
+        <script>
+            const answer2 = A.isDisjointFrom(B);
+            document.getElementById("7").innerHTML = `A isDisjointFrom(B): ${answer2}`;  // false
+        </script>
+    </div>
+    
+</body>
+</html>

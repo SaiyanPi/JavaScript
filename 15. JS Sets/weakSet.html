@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript WeakSet</title>
+</head>
+<body>
+    <div>
+        <h3>1) WeakSet is a collection of values where the values must be objects.</h3>
+        <p id="1"></p>
+        <p id="2"></p>
+
+        <script>
+            // Create a WeakSet
+            let mySet = new WeakSet();
+
+            // Create an Object
+            let myObj = {fname:"John", lname:"Doe"};
+
+            // Add the Object
+            mySet.add(myObj);
+
+            // Do I have myObj in the mySet?
+            let answer1 = mySet.has(myObj);
+
+            document.getElementById("1").innerHTML = 
+                `after adding object in WeakSet: <br> mySet.has(myObj): ${answer1}`;
+
+            // Delete the Object
+            mySet.delete(myObj);
+
+            // Do I have myObj in the mySet?
+            let answer2 = mySet.has(myObj);
+
+            document.getElementById("2").innerHTML = 
+                `after deleting object from the WeakSet: <br>  mySet.has(myObj): ${answer2}`;
+        </script>
+    </div>
+    
+</body>
+</html>

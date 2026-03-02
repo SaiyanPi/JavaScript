@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Sets</title>
+</head>
+<body>
+    <div>
+        <h3>new Set(): Creating Sets</h3>
+        <p id="1"></p>
+        <p id="2"></p>
+        <p id="3"></p>
+
+        <script>
+            // 1. Create a Set with values
+            const vowels = new Set(["a", "e", "i", "o", "u"]);
+
+            // 2. Create a Set and add values later
+            const letters = new Set();
+            // add values
+            letters.add("a");
+            letters.add("b");
+            letters.add("c");
+            // add variables with values
+            const d = "d";
+            const e = "e";
+            letters.add(d);
+            letters.add(e);
+
+            // Listing Set elements
+            let text = "";
+            for(const letter of letters){
+                text += letter;
+            }
+            document.getElementById("1").innerHTML = `Set elements: ${text}`;
+
+            // Sets are Objects
+            document.getElementById("2").innerHTML = `type of Sets: ${typeof letters}`;
+
+            // instanceof Set returns true:
+            document.getElementById("3").innerHTML = `instanceof Set returns: ${ letters instanceof Set}`;
+        </script>
+    </div>
+    
+</body>
+</html>

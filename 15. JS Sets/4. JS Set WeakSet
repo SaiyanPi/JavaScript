@@ -1,0 +1,138 @@
+JavaScript WeakSet:
+
+- A JavaScript WeakSet is a collection of values where the values must be objects.
+- A WeakSet holds weak references to its values.
+
+    // ➕ Create a WeakSet
+    let mySet = new WeakSet();
+
+    // ➕ Create an Object
+    let myObj = {fname:"John", lname:"Doe"};
+
+    // 📩 Add the Object
+    mySet.add(myObj);
+
+    // ❓ Do I have myObj in the mySet?
+    let answer1 = mySet.has(myObj);
+
+    document.getElementById("1").innerHTML = 
+        `after adding object in WeakSet: <br> mySet.has(myObj): ${answer1}`;    // true
+
+    // 🚮 Delete the Object
+    mySet.delete(myObj);
+
+    // ❓ Do I have myObj in the mySet?
+    let answer2 = mySet.has(myObj);
+
+    document.getElementById("2").innerHTML = 
+        `after deleting object from the WeakSet: <br>  mySet.has(myObj): ${answer2}`;   // false
+
+
+#) Garbage Collection:
+    - JavaScript employs a memory management mechanism known as Garbage Collection.
+    - The primary functions are:
+        👉 Ensuring efficient use of memory resources
+        👉 Reclaim memory occupied by variables that are no longer in use
+        👉 Preventing memory leaks
+
+
+#) Weak References:
+    - Unlike a regular Set, a WeakSet does not prevent its values from being garbage collected.
+    - 💡 If a value (an object) has no references in a program, it becomes eligible for garbage
+        collection.
+    - When the value is garbage collected, its is removed from the WeakSet.
+       
+        // Create a WeakSet
+        let mySet = new WeakSet();
+
+        // Create an Object
+        let myObj = {fname:"John", lname:"Doe"};
+
+        // Add the Object
+        mySet.add(myObj);
+
+        // Remove the Object from memory
+        myObj = null;
+
+        // Now myObj in mySet will be garbage collected
+
+
+#) Values Must Be Objects:
+    - Primitive values cannot be values in a WeakSet. The value must be objects.
+    - 💡 This restriction is tied to the garbage collection mechanism; primitives are not garbage
+        collected in the same way as objects.
+
+
+#) Tracking Objects:
+    - A WeakSet is similar to a Set, but it only stores objects, and holds them weakly. If there are
+        no other references to an object, it gets garbage collected automatically.
+    - This makes it handy for tracking objects without storing extra data (like counts).
+        let text = "";
+
+        // Create a WeakSet to track persons
+        const persons = new WeakSet();
+
+        // Visitor objects
+        const John = {name: "John", age: 40};
+        const Jane = {name: "Jane", age: 35};
+        const Bob = {name: "Bob", age: 50};
+        
+        // Track visits
+        track(John);
+        track(Jane);
+        track(Bob);
+        track(John); // John visits again
+
+        // Function to track visitors
+        function track(visitor) {
+            if(persons.has(visitor)) {
+                text += visitor.name + " is visiting again.<br>";
+            } else {
+                persons.add(visitor);
+                text += visitor.name + " is visiting for the first time.<br>";
+            }
+        }
+
+        document.getElementById("1").innerHTML = text;
+    
+        o/p:    John is visiting for the first time.
+                Jane is visiting for the first time.
+                Bob is visiting for the first time.
+                John is visiting again.
+    
+    ⚠️ If you want to count the visits as well: Try to use a WeakMap instead.
+
+
+#) Automatic Cleanup:
+    - If you remove all references to a visitor object:
+
+        John = null;
+
+        // The entry for John is now removed from the WeakMap (persons)
+
+
+#) Not Iterable:
+    - ⚠️ WeakSets are not enumerable.
+    - ⚠️ You cannot iterate over the values with for loops, forEach(), or values().
+    - ⚠️ You cannot access the size. WeakSets have no size property.
+
+
+#) Limited Methods:
+    - A WeakSet is minimal, memory-safe, and purpose-built for tracking objects privately and
+        efficiently.
+    - WeakSet provides a limited set of methods:
+
+        new WeakSet()	    Creates a new WeakSet object
+        add(object)	        Adds an Object to a WeakSet
+        delete(object)	    Removes a WeakSet object
+        has(object)	        Returns true if an object exists in a WeakSet
+    
+    - ⚠️ WeakSet does not have:
+        A size property
+        A spread operator (...)
+        A clear() method
+        Any logic methods (union, difference, intersection)
+        Any iteration methods (forEach, keys, values, entries)
+
+        The above is by design: Objects may disappear in garbage collection, it makes no sense to
+        iterate over or count them.

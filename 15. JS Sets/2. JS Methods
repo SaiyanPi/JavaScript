@@ -1,0 +1,138 @@
+JavaScript Set Methods:
+
+#) Set Methods & Properties:
+    new Set()
+    add()
+    clear()
+    delete()
+    entries()
+    forEach()
+    has()
+    keys()
+    values()
+    size
+
+#) The new Set() Method:
+    - already discussed in previous section
+#) The add() Method:
+    - already discussed in previous section
+
+#) The size Property:
+    // Create a new Set
+    const mySet = new Set(["a","b","c"]);
+
+    // The number of elements are
+    mySet.size; // 3
+
+#) Listing Set Elements
+    - alreaady discussed in previous section.
+
+#) The has() Method:
+    - The has() method returns true if a specified value exists in a set.
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // Does the Set contain "d"?
+        answer = letters.has("d");  // false
+
+
+#) The forEach() Method:
+    - The forEach() method invokes a function for each Set element:
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // List all entries
+        let text = "";
+        letters.forEach (function(value) {
+            text += value;
+        })
+        document.getElementById("3").innerHTML = ` ${text}`;   //abc
+
+
+#) The values() Method:
+    - The values() method returns an Iterator object with the values in a Set:
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // Get all Values
+        const myIterator = letters.values();    // [object Set Iterator]
+
+        // List all Values
+        let text = "";
+        for (const entry of myIterator) {
+            text += entry;
+        }
+        document.getElementById("3").innerHTML = ` ${text}`;   //abc
+
+            or,
+        
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // List all Iterators with Values
+        let text = "";
+        for (const entry of letters.values()) {
+            text += entry;
+        }
+        document.getElementById("3").innerHTML = ` ${text}`;   //abc
+
+
+#) The keys() Method:
+    - The keys() method returns an Iterator object with the values in a Set:
+    - 💡unlike objects and Arrays, a Set has no keys, so keys() returns the same as values(). This
+        makes Sets compatible with Maps.
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // Get all Iterators with Values
+        const myIterator = letters.keys();    // [object Set Iterator]
+
+        // List all Values
+        let text = "";
+        for (const entry of myIterator) {
+            text += entry;
+        }
+        document.getElementById("3").innerHTML = ` ${text}`;   //abc
+
+           or,
+        
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // List all Iterators with Values
+        let text = "";
+        for (const entry of letters.keys()) {
+            text += entry;
+        }
+        document.getElementById("3").innerHTML = ` ${text}`;   //abc
+
+
+#) The entries() Method:
+    - The entries() method returns an Iterator with [value,value] pairs from a Set.
+    - 💡The entries() method is supposed to return a [key,value] pair from an object. A Set has no keys,
+        so the entries() method returns [value,value].
+    - This makes Sets compatible with Maps.
+        // get all values
+        const iterator2 = mySet.entries();   // [object Set Iterator]
+        // list all values
+        let text3 = "";
+        for (const entry of iterator2) {
+            text3 += entry + "<br>";
+        }
+        document.getElementById("5").innerHTML = `[value, value]: <br> ${text3}`;   // [value, value]:
+                                                                                        a,a
+                                                                                        b,b
+                                                                                        c,c
+
+            or,
+        
+        // get all values
+        // list all values
+        let text3 = "";
+        for (const entry of mySet.entries()) {
+            text3 += entry + "<br>";
+        }
+        document.getElementById("5").innerHTML = `[value, value]: <br> ${text3}`;   // [value, value]:
+                                                                                        a,a
+                                                                                        b,b
+                                                                                        c,c

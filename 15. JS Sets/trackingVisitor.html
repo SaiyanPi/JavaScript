@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking visitors</title>
+</head>
+<body>
+    <div>
+        <h3>A WeakSet is similar to a Set, but it only stores objects, and holds them weakly. <br>
+            If there are no other references to an object, it gets garbage collected automatically.<br>
+            This makes it handy for tracking objects without storing extra data (like counts).
+        </h3>
+        <p id="1"></p>
+
+        <script>
+            let text = "";
+
+            // Create a WeakSet to track persons
+            const persons = new WeakSet();
+
+            // Visitor objects
+            const John = {name: "John", age: 40};
+            const Jane = {name: "Jane", age: 35};
+            const Bob = {name: "Bob", age: 50};
+            
+            // Track visits
+            track(John);
+            track(Jane);
+            track(Bob);
+            track(John); // John visits again
+
+            // Function to track visitors
+            function track(visitor) {
+                if(persons.has(visitor)) {
+                    text += visitor.name + " is visiting again.<br>";
+                } else {
+                    persons.add(visitor);
+                    text += visitor.name + " is visiting for the first time.<br>";
+                }
+            }
+
+            document.getElementById("1").innerHTML = text;
+        </script>
+    </div>
+    
+</body>
+</html>
