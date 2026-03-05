@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Integer Generator</title>
+</head>
+<body>
+    <div>
+        <h3>1) Random Integer between 1(included) and 100(excluded)</h3>
+        <button onclick="document.getElementById('demo1').innerHTML = randomGen1(1, 100)">Click me</button>
+        <p id="demo1"></p>
+
+        <script>
+            function randomGen1(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+        </script>
+    </div>
+    <hr>
+    <div>
+        <h3>2) Random Integer between 1(included) and 100(included)</h3>
+        <button onclick="document.getElementById('demo2').innerHTML = randomGen2(1, 100)">Click me</button>
+        <p id="demo2"></p>
+
+        <script>
+            function randomGen2(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        </script>
+    </div>
+    
+</body>
+</html>
