@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Generator</title>
+</head>
+<body>
+    <div>
+        <h3>JS Generator</h3>
+        <h4>A Generator Object is returned by the generator function. <br>
+        It conforms to both the iterable and iterator protocols, meaning it can be iterated over 
+        using for...of loops.</h4>
+        <p id="demo"></p>
+
+        <script>
+            // Create a generator function
+            function* myStream() {
+                // return { value: 1, done: false };
+                yield 1;
+
+                // return { value: 2, done: false };
+                yield 2;
+
+                // return { value: 3, done: true };
+                return 3;
+            }
+
+
+            // Create a generator object
+            let myGenerator = myStream();
+
+            // Iterate over the generator
+            let text = "";
+            for(let value of myGenerator) {
+                text += value + "<br>";
+            }
+
+            document.getElementById("demo").innerHTML = text;
+
+        </script>
+    </div>
+</body>
+</html>

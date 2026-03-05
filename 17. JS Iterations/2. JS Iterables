@@ -1,0 +1,213 @@
+JavaScript Iterables:
+
+- An Iterable is an Iterable Object
+- Iterable can be iterated over with for...of loops
+
+
+#) The for...of Loop:
+    - The JavaScript for..of statement loops through the elements of an iterable object.
+    - Syntax:   
+                for (variable of iterable) {
+                    // code block to be executed
+                }
+
+#) Iterating:
+    - Iterating means looping over a sequence of elements.
+    - Here are some examples:
+        -> Iterating over a String
+        -> Iterating over an Array
+        -> Iterating over a Set
+        -> Iterating over a Map
+
+
+#) Iterating Over a String:
+    - You can use a for...of loop to iterate over the elements of a string:
+        // Create a String
+        const name = "W3Schools";
+
+        // Iterate over the string elements
+        let text = ""
+        for (const x of name) {
+        text += x + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = text;
+
+        o/p:    W
+                3
+                S
+                c
+                h
+                o
+                o
+                l
+                s
+
+
+#) Iterating Over an Array:
+    - You can use a for...of loop to iterate over the elements of an Array:
+        // Create an Array
+        const letters = ["a","b","c"];
+
+        // Iterate over the array elements
+        let text = "";
+        for (const x of letters) {
+        text += x + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = text;
+
+        o/p:    a
+                b
+                c
+
+
+#) Iterating Over a Set:
+    - You can use a for...of loop to iterate over the elements of a Set:
+        // Create a Set
+        const letters = new Set(["a","b","c"]);
+
+        // Iterate over the set elementss
+        let text = "";
+        for (const x of letters) {
+        text += x + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = text;
+
+        o/p:    a
+                b
+                c
+
+
+#) Iterating Over a Map:
+    - You can use a for...of loop to iterate over the elements of a Map:
+        // Create a Map
+        const fruits = new Map([
+            ["apples", 500],
+            ["bananas", 300],
+            ["oranges", 200]
+        ]);
+
+        // Iterate over the map elements
+        let text = "";
+        for (const x of fruits) {
+            text += x + "<br>";
+        }
+
+        document.getElementById("demo").innerHTML = text;
+
+        O/P:    apples,500
+                bananas,300
+                oranges,200
+
+
+💡) JavaScript Iterators:
+    - ⚠️ The iterator protocol defines how to produce a sequence of values from an object.
+    - ⚠️ An object becomes an iterator when it implements a next() method.
+    - ⚠️ The next() method must return an object with two properties:
+        1. value (the next value):
+            -> 	The value returned by the iterator(Can be omitted if done is true)
+        2. done (true or false):
+            -> true if the iterator has completed, false if the iterator has produced a new value
+    
+    🚥 Technically, iterables must implement the Symbol.iterator method.
+        In JavaScript the following are iterables:
+            Strings
+            Arrays
+            Typed Arrays
+            Sets
+            Maps
+        Because their prototype objects have a Symbol.iterator method:
+
+
+💡) Home Made Iterable:
+    - This iterable returns never ending number: 10,20,30,40,.... when the next() method is called:
+
+        // Home Made Iterable
+        function myNumbers() {
+            let n = 0;
+            return {
+                next: function() {
+                    n += 10;
+                    return { value:n, done:false };
+                }
+            };
+        }
+
+        // Run the Iterable
+        const n = myNumbers();
+        n.next(); // {value: 10, done: false}
+        n.next(); // {value: 20, done: false}
+        document.getElementById("1").innerHTML = n.next().value; // 30
+    
+    - ⚠️ Home made iterables do not support the JavaScript for...of statement.
+    - A JavaScript iterable is an object that has a Symbol.iterator. The Symbol.iterator is a
+        function that returns a next() function.
+    - An iterable can be iterated over with the code: for (const x of iterable) { }
+
+        // Create an Object
+        myNumbers = { };
+
+        // Make it Iterable
+        myNumbers[Symbol.iterator] = function() {
+            let n = 0;
+            done = false;
+            return {
+                next() {
+                    n += 10;
+                    if(n == 100) { done = true; }
+                    return { value:n, done: done };
+                }
+            };
+        }
+
+        // Now we can use for...of to iterate over it
+        let text = "";
+        for(const num of myNumbers) {
+            text += num + "<br>";
+        }
+        document.getElementById("output").innerHTML = `Iterator stops when n = 100. <br> ${text}`;
+
+        o/p:    Iterator stops when n = 100.
+                10
+                20
+                30
+                40
+                50
+                60
+                70
+                80
+                90
+    
+    - ⚠️ The Symbol.iterator method is called automatically by for..of. But we can also do it "manually":
+
+        // Calling Symbol.iterator manually
+        // Create an Iterator
+        let iterator = myNumbers[Symbol.iterator]();
+
+        let text1 = "";
+        while(true) {
+            const result = iterator.next();
+            if(result.done) break;
+            text1 += result.value + "<br>";
+        }
+        document.getElementById("output1").innerHTML = `Manual Iterator: <br> ${text1}`;
+
+        o/p:    Manual Iterator:
+                10
+                20
+                30
+                40
+                50
+                60
+                70
+                80
+                90
+
+
+🚥 Note
+Iterators provide a controlled way to work with data sequences, enabling custom iteration logic for
+various data structures.
+In the next chapter you will learn about the new Iterator Helper Functions introduced in ECMAScript
+2025.

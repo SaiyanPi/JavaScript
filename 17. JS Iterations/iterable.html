@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Iterables</title>
+    <div>
+        <h3>A JavaScript iterable is an object that has a Symbol.iterator.</h3>
+        <h3>The Symbol.iterator is a function that returns a next() function.</h3>
+        <h3>An iterable can be iterated over with the code: for (const x of iterable) { }</h3>
+        <p id= "output"></p>
+        <p id= "output1"></p>
+
+        <script>
+            // Create an Object
+            myNumbers = { };
+
+            // Make it Iterable
+            myNumbers[Symbol.iterator] = function() {
+                let n = 0;
+                done = false;
+                return {
+                    next() {
+                        n += 10;
+                        if(n == 100) { done = true; }
+                        return { value:n, done: done };
+                    }
+                };
+            }
+
+            // 1️⃣ Now we can use for...of to iterate over it
+            // The Symbol.iterator method is called automatically by for..of.
+            let text = "";
+            for(const num of myNumbers) {
+                text += num + "<br>";
+            }
+            document.getElementById("output").innerHTML = `Iterator stops when n = 100. <br> ${text}`;
+
+            // 2️⃣ or, Calling Symbol.iterator manually
+            // Create an Iterator
+            let iterator = myNumbers[Symbol.iterator]();
+
+            let text1 = "";
+            while(true) {
+                const result = iterator.next();
+                if(result.done) break;
+                text1 += result.value + "<br>";
+            }
+            document.getElementById("output1").innerHTML = `Manual Iterator: <br> ${text1}`;
+        </script>
+    </div>
+</head>
+<body>
+    
+</body>
+</html>

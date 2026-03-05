@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Number Generator</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h3>Infinite Numbers Generators with JS Generator.</h3>
+        <hr>
+        <h4>Click the button below to increase number</h4><br>
+        <p id="demo" style="font-size:200px;">0</p>
+        <button onclick="nextNumber()">Increase Number</button>
+        <button onclick="resetNumber()">Reset Number</button>
+
+        <script>
+            // Generator function
+            function* infiniteNumberGenerator() {
+                let n = 0;
+                while(true) {
+                    yield n++;
+                }
+            }
+
+            // Create a generator object
+            let numbers = infiniteNumberGenerator();
+
+            let num = "";
+
+            function nextNumber() {
+                // Calling next() method to get the next value from the generator
+                num = numbers.next().value;
+                document.getElementById("demo").innerHTML = num;
+            }
+
+            function resetNumber() {
+                reset = infiniteNumberGenerator();
+                num = reset.next().value;
+                document.getElementById("demo").innerHTML = num;
+            }
+        </script>
+    </div>
+    
+</body>
+</html>

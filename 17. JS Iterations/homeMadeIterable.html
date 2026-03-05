@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Iterators</title>
+</head>
+<body>
+    <div>
+        <h3>Home Made Iterable</h3>
+        <h4>This iterable returns never ending number: 10,20,30,40,.... when the next() method is called:
+        <p id="1"></p>        
+
+        <script>
+            // Home Made Iterable
+            function myNumbers() {
+                let n = 0;
+                return {
+                    next: function() {
+                        n += 10;
+                        return { value:n, done:false };
+                    }
+                };
+            }
+
+            // Run the Iterable
+            const n = myNumbers();
+            n.next(); // {value: 10, done: false}
+            n.next(); // {value: 20, done: false}
+            document.getElementById("1").innerHTML = n.next().value; // 30
+        </script>
+    </div>
+    
+</body>
+</html>
