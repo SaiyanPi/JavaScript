@@ -1,0 +1,95 @@
+RegExp Quantifiers:
+
+- Quantifiers define the numbers of characters or expressions to match.
+    // Match at least one zero
+    const pattern = /0+/;
+
+
+#) JavaScript RexExp Quantifiers: Revised July 2025
+
+        Code	    Description
+    ---------------------------------------------------------
+        x+	        Matches at least one x
+        x*	        Matches zero or more occurrences of x
+        x?	        Matches zero or one occurrences of x
+        x{n}	    Matches n occurences of x
+        x{n,m}	    Matches from n to m occurences of x
+        x{n,}	    Matches n or more occurences of x
+
+
+1️⃣ RegExp + Quantifier:
+    - x+ matches matches at least one x.
+    - eg: A global search for at least one "o":
+
+        let text = "Hellooo World! Hello W3Schools!";
+        const pattern = /o+/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // ooo,o,o,oo
+
+2️⃣ RegExp * Quantifier:
+    - x* matches zero or more occurrences of x.
+    - eg: A global search for an "l", followed by zero or more "o" characters:
+
+        let text = "Hellooo World! Hello W3Schools!"; 
+        const pattern = /lo*/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // l,looo,l,l,lo,l
+
+3️⃣ RegExp ? Quantifier:
+    - x? matches zero or one occurrences of x.
+    - eg: A global search for "1", followed by zero or one "0" characters:
+
+        let text = "1, 100 or 1000?";
+        const pattern = /10?/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // l,10,10
+
+4️⃣ RegExp {n} Quantifier:
+    - x{n} matches n occurences of x.
+    - eg: A global search for a string that contains a sequence of four digits:
+
+        let text = "100, 1000 or 10000?";
+        const pattern = /\d{4}/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     //  1000,1000
+
+5️⃣ RegExp {n,m} Quantifier:
+    - x{n,m} matches from n to m occurences of x.
+    - eg: A global search for a substring that contains a sequence of three to four digits:
+
+        let text = "100, 1000 or 10000?";
+        const pattern = /\d{3,4}/g; 
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // 100,1000,1000
+
+6️⃣ RegExp {n,} Quantifier:
+    - x{n,} matches n or more occurences of x.
+    - eg: A global search for a sequence of at least three digits:
+
+        let text = "100, 1000 or 10000?";
+        const pattern = /\d{3,}/g; 
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // 100,1000,10000
+
+
+#) Regular Expression Methods:
+    - Regular Expression Search and Replace can be done with different methods.
+    - These are the most common:
+
+    1️⃣ String Methods
+        
+        Method	            Description
+    ---------------------------------------------------------------
+        match(regex)	    Returns an Array of results
+        matchAll(regex)	    Returns an Iterator of results
+        replace(regex)	    Returns a new String
+        replaceAll(regex)	Returns a new String
+        search(regex)	    Returns the index of the first match
+        split(regex)	    Returns an Array of results
+    
+    2️⃣ RegExp Methods
+
+        Method	            Description
+    ---------------------------------------------------------------
+        regex.exec()	    Returns an Iterator of results
+        regex.test()	    Returns true or false

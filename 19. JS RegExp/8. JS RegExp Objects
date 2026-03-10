@@ -1,0 +1,57 @@
+JavaScript RegExp Objects:
+
+- In JavaScript, RegExp is a regular expression object with predefined properties and methods.
+
+
+#) Using test():
+    - The test() method is a RegExp expression method.
+    - 💡 It searches a string for a pattern, and returns true or false, depending on the result.
+    - The following example searches a string for the character "e":
+
+        let str = "The rain in Spain stays mainly in the plain";
+        let pattern = /ain/;
+
+        const boolean = pattern.test(str);  // true
+        
+        document.getElementById("1").innerHTML = boolean;
+        
+
+#) Using exec():
+    - The exec() method is a RegExp expression method.
+    - 💡 It searches a string for a specified pattern, and returns the found text as an object.
+    - If no match is found, it returns an empty (null) object.
+    - The following example searches a string for the character "e":
+
+        let str = "The rain in Spain stays mainly in the plain";
+        let pattern = /ain/;
+
+        const object = pattern.exec(str);   // if found returns text as an object else returns null object
+
+        document.getElementById("2").innerHTML = object;     // ain
+        document.getElementById("3").innerHTML = "Type: " + typeof pattern.exec(str);  // object
+        document.getElementById("4").innerHTML = 
+        object[0] + " is in the " + object.index + " position of the string: " + object.input;
+        // ain is in the 5th position of the string: The rain in Spain stays mainly in the plain
+
+
+#) The RegExp.escape() Method:
+    - RegExp.escape() is an ECMAScript 2025 feature.
+    - The RegExp.escape() method returns string where characters that belongs to the regular
+        expression syntax are escaped.
+    - This makes it possible to treat characters like +, *, ?, ^, $, (, ), [, ], {, }, |, and \
+        literally, and not as part of a regular expression.
+
+        // 1) escape a string to be used in a regular expression
+        const escape = RegExp.escape("[*]");  
+        // 2) creates a regular expression object for matching text with a string
+        const regex = new RegExp(escape);  // creates a regular expression object for matching text with a string
+        // 3) building string with regex characters
+        const text1 = "[*] is what you want it to be.";
+        // 4) replacing regex characters with the string
+        const text2 = text1.replace(regex, "Life");  // This is what you
+
+        
+        document.getElementById("5").innerHTML = "<b> escape: </b>" + escape;    // \[\*\]
+        document.getElementById("6").innerHTML = "<b> regex (/ /): </b>" + regex;  // /\[\*\]/
+        document.getElementById("7").innerHTML = "<b> string with regex characters: </b>" + text1;  // true
+        document.getElementById("8").innerHTML = "<b> replacing regex with other string: </b>" + text2;  // Life is what you want it to be.

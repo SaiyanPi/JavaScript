@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>Arrow functions don't have their own this</h3>
+        <p id="1"></p>
+        <p id="2"></p>
+
+        <script>
+            const obj = {
+                value: 42,
+                method: function () {
+                    const arrowFunc = () => `The number is: ${this.value}`;
+                    // 'this' refers to 'obj'
+                    return arrowFunc();
+                },
+            }
+            document.getElementById('1').textContent = obj.method(); // Output: 42
+
+            // In arrow functions, 'this' is determined by the surrounding context.
+            // In this case, 'this' refers to the 'obj' object, allowing us to access
+            // 'value' correctly.
+        </script>
+    </div>
+    
+</body>
+</html>

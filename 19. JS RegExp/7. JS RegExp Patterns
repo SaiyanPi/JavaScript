@@ -1,0 +1,87 @@
+JavaScript RegExp Patterns:
+
+#) Full RegExp Flag Reference: Revised July 2025
+    - Flags can be added to a regexp pattern to Modify its behavior:
+
+            Flag	    Description
+        -----------------------------------------------------------------------------------
+            /d	        Performs substring matches (new 2022)
+            /g	        Performs a global match (find all)
+            /i	        Performs case-insensitive matching
+            /m	        Performs multiline matching
+            /s	        Allows . (dot) to match line terminators (new 2018)
+            /u	        Enables Unicode support (new 2015)
+            /v	        An upgrade to the /u flag for better Unicode support (new 2025)
+            /y	        Performs a "sticky" search (new 2015)
+
+
+#) Full Character Classes Reference: Revised July 2025
+    - A character class is one or more characters enclosed in square brackets [ ]:
+
+            Class	    Description
+        -----------------------------------------------------------------------------------
+            [a]	        Matches the character between the brackets
+            [^a]	    Matches all characters NOT between the brackets
+            [abc]	    Matches all characters between the brackets
+            [^abc]	    Matches all characters NOT between the brackets
+            [a-z]	    Matches all characters in the range from a to z
+            [^a-z]	    Matches all characters NOT in the range from a to z
+            [0-9]	    Matches all characters in the range from 0 to 9
+            [^0-9]	    Matches all characters NOT in the range from 0 to 9
+
+
+#) Full Metacharacter Reference: Revised July 2025
+    - Metacharacters are characters with a special meaning:
+            
+            a|b	        Matches a or b
+            .	        Matches any (wildcard) character except line terminators
+            \w	        Matches word characters (alphanumeric and _)
+            \W	        Matches non-word characters
+            \d	        Matches digits (0-9)
+            \D	        Matches non-digit characters
+            \s	        Matches whitespace characters (space, tab, newline)
+            \S	        Matches non-whitespace character
+            [\b]	    Matches backspace characters
+            \0	        Matches NULL characters
+            \n	        Matches new line characters
+            \f	        Matches form feed characters
+            \r	        Matches carriage returns characters
+            \t	        Matches tab characters
+            \v	        Matches vertical tab characters
+            \p{}	    Matches characters with given Unicode Property (new 2018)
+            \P{}	    Matches character NOT with the given Unicode Property (new 2018)
+            \ddd	    Matches a character by the octal number ddd
+            \xhh	    Matches a character by the hexadecimal number hh
+            \uhhhh	    Matches a Unicode character by the hex number hhhh
+
+
+#) Full RexExp Assertions Reference: Revised July 2025
+    - Assertions consist of Boundaries and Lookarounds.
+    - Boundaries matches at the beginning or the end of lines and words, Lookarounds mathes previos
+        or subsequent patterns.
+
+            Char	    Description
+        --------------------------------------------------------------------------------------------
+            ^	        Matches from beginning of a string, or the beginning of a line if the m 
+                            (multiline) flag is set
+            $	        Matches from the end of a string, or the end of a line if the m (multiline)
+                            flag is set
+            \b	        Matches from the beginning or end of a word
+            \B	        Matches NOT from the beginning or end of a word
+            (?=...)	    Matches the subsequent string
+            (?!...)	    Matches NOT the subsequent string
+            (?<=...)	Matches the previous string (new 2018)
+            (?<!...)	Matches NOT the previous string (new 2018)
+
+
+#) RexExp Quantifiers:
+    - Quantifiers indicate the numbers of characters or expressions to match:
+
+            Code	    Description
+        ----------------------------------------------------------
+            x+	        Matches at least one x
+            x*	        Matches zero or more occurrences of x
+            x?	        Matches zero or one occurrences of x
+            x{n}	    Matches n occurences of x
+            x{n,m}	    Matches from n to m occurences of x
+            x{n,}	    Matches n or more occurences of x

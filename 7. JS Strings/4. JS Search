@@ -62,22 +62,26 @@
         (or a regular expression).
         eg: 
             let text = "The rain in SPAIN stays mainly in the plain";
-            text.match("ain");  // 1 ain
+            const myArr = text.match("ain");
+            document.getElementById("demo").innerHTML = myArr.length + " " + myArr;     // 1 ain
 
             or
 
             let text = "The rain in SPAIN stays mainly in the plain";
-            text.match(/ain/);  // 1 ain
+            const myArr = text.match(/ain/);
+            document.getElementById("demo").innerHTML = myArr.length + " " + myArr;     // 1 ain
     
     - Perform a global search for "ain":
 
             let text = "The rain in SPAIN stays mainly in the plain";
-            text.match(/ain/g); // 3 ain,ain,ain
+            const myArr = text.match(/ain/g);
+            document.getElementById("demo").innerHTML = myArr.length + " " + myArr; // 3 ain,ain,ain
     
     - Perform a global, case-insensitive search for "ain":
 
             let text = "The rain in SPAIN stays mainly in the plain";
-            text.match(/ain/gi);    // 4 ain,AIN,ain,ain
+            const myArr = text.match(/ain/gi);
+            document.getElementById("demo").innerHTML = myArr.length + " " + myArr;    // 4 ain,AIN,ain,ain
     
     - If a regular expression does not include the g modifier (global search), match() will return only
         the first match in the string.

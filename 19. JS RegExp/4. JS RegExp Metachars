@@ -1,0 +1,109 @@
+RegExp Meta Characters:
+
+- Metacharacters are characters with a special meaning.
+- They can be used to match digts, words, spaces, and more:
+    // Match words
+    const pattern = /\w/;
+
+
+#) JavaScript Regex Metacharacters: Revised July 2025
+    
+        Meta	    Description
+    -----------------------------------------------------------------------
+        \d	        Matches Digits
+        \D	        Matches None Digits
+        \w	        Matches alphanumeric Word characters
+        \W	        Matches None alphanumeric Word characters
+        \s	        Matches Spaces
+        \S	        Matches None Spaces
+        \ddd	    Matches characters by the Octal numer ddd
+        \xhh	    Matches characters by the HexadecimaL number hh
+        \uhhhh	    Matches Unicode characters by the hex number hhhh
+
+    1️⃣ RegExp \d (digits) Metacharacter:
+    -> The \d metacharacter matches digits.
+    -> eg: A global search for digits in a string:
+
+        let text = "Give 100%!";
+        const pattern = /\d/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // 1,0,0
+    
+    2️⃣ RegExp \D Metacharacter:
+    -> The \D metacharacter matches non-digit characters.
+    -> eg: A global search for non-digit characters:
+
+        let text = "Give 100%!"; 
+        const pattern = /\D/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML=result;       // G,i,v,e, ,%,!
+
+    3️⃣ RegExp \w (word) Metacharacter:
+    -> The \w metacharacter matches word characters.
+    -> A word character is a character a-z, A-Z, 0-9, including _ (underscore).
+    -> eg: A global search for word characters:
+
+        let text = "Give 100%!"; 
+        const pattern = /\w/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // G,i,v,e,1,0,0
+    
+    4️⃣ RegExp \W Metacharacter:
+    -> The \W metacharacter matches non-word characters.
+    -> A word character is a character a-z, A-Z, 0-9, including _ (underscore).
+    -> eg: A global search for non-word characters:
+
+        let text = "Give 100%!";
+        const pattern = /\W/g;
+        let result = text.match(pattern);   
+        document.getElementById("demo").innerHTML = result;     //  ,%,!  (space in the first array element)
+    
+    5️⃣ The \s (space) Metacharacter:
+    -> The \s metacharacter matches whitespace characters like space, tab, and newline.
+    -> eg: A global search for whitespace characters in a string:
+
+        let text = "Is this all there is?";
+        const pattern = /\s/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     //  , , ,   (4 space)
+    
+    6️⃣ RegExp \xhh (hexadecimal):
+    -> \xhh matches characters by the hexadecimal number hh.
+    -> eg: A global replace of the hexadecimal character 6F (o) in a string:
+
+        let text = "Visit W3Schools. Hello World!"; 
+        let pattern = /\x6F/g;
+        let result = text.replace(pattern, "*");
+        document.getElementById("demo").innerHTML = result;     // Visit W3Sch**ls. Hell* W*rld!
+    
+    7️⃣ RegExp \uhhhh (unicode hex):
+    -> \uhhhh matches a Unicode character by the hex number hhhh.
+    -> eg: A global search for a Unicode character with the hexadecimal code 0057 (W):
+
+        let text = "Visit W3Schools. Hello World!";
+        const pattern = /\u0057/g;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result;     // W,W
+
+
+#) Regular Expression Methods:
+    - Regular Expression Search and Replace can be done with different methods.
+    - These are the most common:
+
+    1️⃣ String Methods
+        
+        Method	            Description
+    ---------------------------------------------------------------
+        match(regex)	    Returns an Array of results
+        matchAll(regex)	    Returns an Iterator of results
+        replace(regex)	    Returns a new String
+        replaceAll(regex)	Returns a new String
+        search(regex)	    Returns the index of the first match
+        split(regex)	    Returns an Array of results
+    
+    2️⃣ RegExp Methods
+
+        Method	            Description
+    ---------------------------------------------------------------
+        regex.exec()	    Returns an Iterator of results
+        regex.test()	    Returns true or false

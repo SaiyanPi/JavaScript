@@ -1,0 +1,165 @@
+Regular Expression Assertions:
+
+- Assertions matches Boundaries and Lookarounds:
+    -> String Boundaries and Word Boundaries.
+    -> Lookarounds: Lookaheads and Lookbehinds.
+
+        // Match beginning of string
+        const pattern = /^W3Schools/;
+
+        // Match end of string
+        const pattern = /W3Schools$/;
+
+
+#) JavaScript Regex Assertions: Revised July 2025
+
+        Syntax	    Name	            Description
+    ----------------------------------------------------------------------------------
+        ^	        String boundary	    Matches the beginning of a string
+        $	        String boundary	    Matches the end of a string
+        \b	        Word boundary	    Matches the beginning or end of a word
+        \B	        Word boundary	    Matches NOT the beginning or end of a word
+        (?=...)	    Lookahead	        Matches the subsequent string
+        (?!...)	    Lookahead	        Matches NOT the subsequent string
+        (?<=...)	Lookbehind	        Matches the previous string
+        (?<!...)	Lookbehind	        Matches NOT the previous string
+    
+1️⃣ RegExp ^ Metacharacter:
+    - The ^ metacharacter matches the beginning of a string.
+    - eg: Test if a string starts with W3Schools:
+
+        let text = "W3Schools tutorial";
+        const pattern = /^W3Schools/;
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // true
+
+        let text = "Hello W3Schools";
+        const pattern = /^W3Schools/;
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // false
+
+2️⃣ RegExp $ Metacharacter:
+    - The $ metacharacter matches the end of a string.
+    - eg: Test if a string ends with W3Schools:
+
+        const pattern = /W3Schools$/;
+        let text = "Hello W3Schools";
+        let result = pattern.test(text);    // true
+
+        const pattern = /W3Schools$/;
+        let text = "W3Schools tutorial";
+        let result = pattern.test(text);    // false
+
+3️⃣ The \b Metacharacter:
+    - The \b metacharacter matches the beginning of a word or the end of a word.
+    - eg: Search for the characters "LO" at the beginning of a word:
+
+        let text = "HELLO, LOOK AT YOU!"; 
+        let result = text.search(/\bLO/);
+        document.getElementById("demo").innerHTML = result;     // 7
+    
+     eg: Search for the characters "LO" at the end of a word:
+
+        let text = "HELLO, LOOK AT YOU!"; 
+        let result = text.search(/LO\b/);
+        document.getElementById("demo").innerHTML = result;     // 3
+
+4️⃣ RegExp Lookahead x(?=y):
+    - x(?=y) matches "x" if "x" is followed by "y".
+    - eg: Match "W3schools" if "W3Schools" is followed by " Tutorials".
+
+        let text = "W3Schools Tutorials";
+        let pattern = new RegExp("W3Schools(?=) Tutorials");
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // true
+
+        let text = "W3Schools Tutorials";
+        let pattern =/W3Schools(?= Tutorials)/;
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // true
+
+5️⃣ Negative Lookahead x(?!y):
+    - x(?!y) matches "x" if "x" is NOT followed by "y".
+    - eg: 
+
+        let text = "W3Schools Tutorials";
+        let pattern = /W3Schools(?! Tutorials)/;    //W3Schools is NOT followed by Tutorials?
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // false
+
+6️⃣ RegExp Lookbehind (?<=y)x:
+    - (?<=y)x matches "x" if "x" is preceded by "y".
+    - eg:
+
+        let text = "Hello W3Schools";
+        let pattern = /(?<=Hello )W3Schools/;   // W3Schools is preceded by Hello?
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // true
+
+7️⃣ Negative Lookbehind (?<!y)x:
+    - (?<!y)x matches "x" only if "x" is NOT preceded by "y".
+    - eg:
+
+        let text = "Hello W3Schools";
+        let pattern = /(?<!Hello )W3Schools/;   // W3Schools is NOT preceded by Hello?
+        let result = pattern.test(text);
+        document.getElementById("demo").innerHTML = result;     // false
+
+
+#) Regular Expression Groups:
+
+        Char	            Description
+    -------------------------------------------------------
+        (x)	                Matches x and saves it
+        (?<n>x)	            Matches x and labels it n
+        (?flag:x)	        Enables flag(s) for x
+        (?flag-flag:x)	    Disables flag(s) for x
+
+
+#) RegExp Capturing Groups (x):
+
+        let text = "Haha, haha, haha.";
+        const pattern = /(haha)+/;
+        let result = text.match(pattern);
+        document.getElementById("demo").innerHTML = result; // haha,haha
+    
+    -> In the output array, first haha is the first match
+    -> and the second haha is the capturing groups
+
+
+#) Named Capturing Groups (?<n>):
+
+        const text = "Name: John Doe";
+        // Using named capturing groups
+        const regex = /(?<firstName>\w+) (?<lastName>\w+)/;     // wordCharacters + space + wordCharacters
+        const match = text.match(regex);
+        let fName = match.groups.firstName;
+        let lName = match.groups.lastName;
+        document.getElementById("demo").innerHTML = "Last Name: " + lName;  // Last Name: Doe
+    
+    -> (?<firstName>\w+) captures a word and labels it firstName
+    -> (?<lastName>\w+) does the same for lastName
+    -> text.match() returns an array with a groups property
+    -> match.groups() returns an object: { firstName:"John", lastName:"Doe" }
+
+    - 💡When using capturing groups, the String method match() and the RegExp method exec(), return a
+        match object with a groups property. This property holds the names and the values of the
+        groups.
+
+
+
+#) RegExp Group Modifiers (?flag):
+    - The (?flag) syntax is a group modifier (inline flag modifier).
+    - It allows for modifying flags in a part of a pattern, rather than to the entire pattern.
+    - (?flags:pattern) enables the flags only for the pattern in the group.
+        eg: Search for "w3schools tutorials" (with only W3Schools case-intensitive):
+
+            let text = "W3Schools tutorials.";
+            const pattern = /(?i:W3Schools) tutorials/;
+            let result = pattern.test(text);
+            document.getElementById("demo").innerHTML = result;     // true
+
+            let text = "W3Schools Tutorials.";
+            const pattern = /(?i:W3Schools) tutorials/;
+            let result = pattern.test(text);
+            document.getElementById("demo").innerHTML = result;     // false

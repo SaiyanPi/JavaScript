@@ -1,0 +1,114 @@
+JavaScript RegExp:
+
+- A Regular Expression is a sequence of characters that forms a search pattern.
+- Regex is a common shorthand for a regular expression.
+- JavaScript RegExp is an Object for handling Regular Expressions.
+- RegExp are be used for:
+    👉 Text searching
+    👉 Text replacing
+    👉 Text validation
+
+    eg: Do a case-insensitive search for "w3schools" in a string:
+            let text = "Visit W3Schools!"; 
+            let n = text.search(/w3Schools/i);
+            document.getElementById("demo").innerHTML = n;  // 6
+        
+        -> /w3schools/i  is a regular expression.
+        -> w3schools  is a pattern (to be used in a search).
+        -> i  is a modifier (modifies the search to be case-insensitive).
+
+- 💡Regular Expression Syntax:    /pattern/modifier flags;
+
+- 💡Regular expressions are often used with the string methods:
+
+        Method	            Description
+    --------------------------------------------------------------
+        match(regex)	    Returns an Array of results
+        replace(regex)	    Returns a new String
+        search(regex)	    Returns the index of the first match
+
+    1️⃣ Using String match():
+            let text = "Visit W3Schools!"; 
+            const myArr = text.match(/W3Schools/);
+            document.getElementById("demo").innerHTML = myArr;  // W3Schools
+
+    2️⃣ Using String replace():
+            <p id="demo">Please visit Microsoft!</p>
+            <script>
+                let text = document.getElementById("demo").innerHTML;
+                text = text.replace(/Microsoft/, "W3Schools");
+                document.getElementById("demo").innerHTML = text;   // Please visit W3Schools!
+            </script>
+
+    3️⃣ Using String search():
+            let text = "Visit W3Schools!"; 
+            let n = text.search(/W3Schools/);
+        document.getElementById("demo").innerHTML = n;  // 6
+       
+
+#) RexExp Alternation (OR)
+    - In a regular expression an alternation is denoted with a vertical line character |.
+    - An alternation matches any of the alternatives separated with |.
+    - eg: A global search for the alternatives (red|green|blue):
+
+            let text = "Black, white, red, green, blue, yellow.";
+            let result = text.match(/red|green|blue/g);
+            document.getElementById("demo").innerHTML = result; // red,green,blue
+
+#) JavaScript Regex Flags: 
+    - /pattern/flags
+    - Regular expression flags are parameters that can modify how a pattern is used, such as making it
+        case-insensitive or global.
+    - These are the most common:
+
+            Flag	    Description
+        -----------------------------------------------------------
+            /g	        Performs a global match (find all)
+            /i      	Performs case-insensitive matching
+            /u	        Enables Unicode support (new 2015)
+
+    1️⃣ The /g Flag (Global):
+        -> The /g flag matches all occurrences of the pattern, rather than just the first one.
+            
+            let text = "Is this all there is?";
+            const pattern = /is/g;
+            let result = text.match(pattern);
+            document.getElementById("demo").innerHTML = result;     // is,is
+    
+    2️⃣ The /i Flag (Insensitive):
+        -> The /i flag makes a match case-insensitive: /abc/i matches "abc", "AbC", "ABC".
+            
+            let text = "Visit W3Schools";
+            const pattern = /w3schools/i;
+            let result = text.match(pattern);
+            document.getElementById("demo").innerHTML = result;     // W3Schools
+
+#) RexExp Metacharacters:
+    - Metacharacters are characters with a special meaning.
+    - They can be used to match digits, words, spaces, and more.
+    - These are the most common:
+
+            
+            Meta	    Description
+        ------------------------------------------
+            \d	        Matches Digits
+            \w	        Matches Words
+            \s	        Matches Spaces
+    
+    1️⃣ RegExp \d (digits) Metacharacter:
+        -> The \d metacharacter matches digits.
+        -> eg: A global search for digits in a string:
+            
+            let text = "Give 100%!";
+            const pattern = /\d/g;
+            let result = text.match(pattern);
+            document.getElementById("demo").innerHTML = result;     // 1,0,0
+    
+    2️⃣ RegExp \w (word) Metacharacter:
+        -> The \w metacharacter matches word characters.
+        -> ⚠️ A word character is a character a-z, A-Z, 0-9, including _ (underscore).
+
+            let text = "Give 100%!"; 
+            const pattern = /\w/g;
+            let result = text.match(pattern);
+            document.getElementById("demo").innerHTML = result;     // G,i,v,e,1,0,0

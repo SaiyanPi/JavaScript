@@ -87,10 +87,22 @@
             document.getElementById("arrow").innerHTML = dog.call();    // ❌ Hello
         
             -> here, this refers to the window.
-            -> if we console.log(this) inside function before retuyrn statement, we will get
-                the owindow.
+            -> if we console.log(this) inside function before return statement, we will get
+                the window.
 
+        // arrow function inside an Object method/function
+            const dog = {   // dog object
+                name: "Coco",
+                call: function() {
+                    const arrowFun = () => "Hello" + this.name;     // arrow function
+                    return arrowFun();  
+                }
+            }
+            document.getElementById("arrow").innerHTML = dog.call();    // ✅ Hello Coco
 
+            -> In arrow functions, 'this' is determined by the surrounding context.
+            -> In this case, 'this' refers to the 'dog' object, allowing us to access name property
+        
 #) When to use and when not to use arrow function:
     - Use:
         -> For short functions

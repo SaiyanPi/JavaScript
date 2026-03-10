@@ -100,9 +100,13 @@
     <div>
         <h3> String as Object</h3>
         <p id="object"></p>
+        <p id="aq"></p>
+        <p id="aq2"></p>
+
         <script>
             let r = "John";
             let s = new String("John"); // string as object
+            let t = new String("John");
             
             document.getElementById("object").innerHTML =
                 ` let r = 50; <br>
@@ -111,6 +115,13 @@
                 r == s  // ${r == s} but <br>
                 r === s // ${r === s} Comparing two JavaScript objects always returns false.`;
 
+                document.getElementById("aq").innerHTML = `typeof r // ${typeof r} <br>
+                typeof s // ${typeof s}`;
+
+                // event though both r and s are of the same type(object) and have the same value,
+                // they are not strictly equal because they are different objects in memory.
+                document.getElementById("aq2").innerHTML = `s == t // ${s == t} <br>
+                s === t // ${s === t}`;
         </script>
     </div>
     

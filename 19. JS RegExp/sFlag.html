@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s Flag</title>
+</head>
+<body>
+    <div>
+        <h3>The /s flag allows the . (dot) metacharacter to match newline characters (\n) in addition to any
+        other character.</h3>
+        <p id="1"></p>
+
+        <script>
+            let testString = "Hello_\nHello.";
+            let pattern = /Hello./gs;
+            let result = testString.match(pattern);
+
+            document.getElementById("1").textContent = 
+                result ? "Match found: " + result : "No match found";
+        </script>
+    </div>
+    
+</body>
+</html>
