@@ -14,9 +14,163 @@ JS Number Methods:
 
         valueOf()           // returns a number as a number.
 
-#) Static Methods
-    - ⚠️ Static methods can only be used on Number cannot be used on variables:
+    1️⃣ The toString() Method:
+        - The toString() method returns a number as a string.
+        - All number methods can be used on any type of numbers (literals, variables, or expressions):
+            let x = 123;
+            document.getElementById("demo").innerHTML =
+                x.toString() + "<br>" +
+                (123).toString() + "<br>" +
+                (100 + 23).toString();
 
+            o/p:    123
+                    123
+                    123
+
+        - The toString() method can take an optional radix argument to convert the number to a different
+            base:
+                let x = 123;
+                let text = x.toString(2);   // 1111011
+
+    2️⃣ The toExponential() Method:
+        - toExponential() returns a string, with a number rounded and written using exponential notation.
+        - A parameter defines the number of characters behind the decimal point:
+
+            let x = 9.656;
+            document.getElementById("demo").innerHTML =
+                x.toExponential() + "<br>" + 
+                x.toExponential(2) + "<br>" + 
+                x.toExponential(4) + "<br>" + 
+                x.toExponential(6);
+
+            o/p:    9.656e+0
+                    9.66e+0
+                    9.6560e+0
+                    9.656000e+0
+
+        - The parameter is optional. If you don't specify it, JavaScript will not round the number.
+
+    3️⃣ The toFixed() Method:
+        - toFixed() returns a string, with the number written with a specified number of decimals:
+
+            let x = 9.656;
+            document.getElementById("demo").innerHTML =
+                x.toFixed(0) + "<br>" +
+                x.toFixed(2) + "<br>" +
+                x.toFixed(4) + "<br>" +
+                x.toFixed(6);
+            
+            o/p:    10
+                    9.66
+                    9.6560
+                    9.656000
+
+        - 💡toFixed(2) is perfect for working with money.
+    
+    4️⃣ The toPrecision() Method:
+        - toPrecision() returns a string, with a number written with a specified length:
+
+            let x = 9.656;
+            document.getElementById("demo").innerHTML = 
+                x.toPrecision() + "<br>" +
+                x.toPrecision(2) + "<br>" +
+                x.toPrecision(4) + "<br>" +
+                x.toPrecision(6);  
+
+            o/p:    9.656
+                    9.7
+                    9.656
+                    9.65600
+    
+    5️⃣ The valueOf() Method:
+        - valueOf() returns a number as a number.
+            
+            let x = 123;
+            document.getElementById("demo").innerHTML = 
+                x.valueOf() + "<br>" +
+                (123).valueOf() + "<br>" +
+                (100 + 23).valueOf();
+
+            o/p:    123
+                    123
+                    123
+
+        - In JavaScript, a number can be a primitive value (typeof = number) or an object
+            (typeof = object).
+        - The valueOf() method is used internally in JavaScript to convert Number objects to primitive
+            values. There is no reason to use it in your code.
+        - 💡All JavaScript data types have a valueOf() and a toString() method.
+
+
+#) Converting Variables to Numbers:
+    - There are 3 JavaScript methods that can be used to convert a variable to a number:
+        
+        Method	            Description
+    -----------------------------------------------------------------------------------------
+        Number()	        Returns a number converted from its argument.
+        parseFloat()	    Parses its argument and returns a floating point number
+        parseInt()	        Parses its argument and returns a whole number
+
+    - ⚠️ The methods above are not number methods. They are global JavaScript methods.
+
+    1️⃣ The Number() Method:
+        - The Number() method can be used to convert JavaScript variables to numbers:
+            eg:
+                Number(true);       // 1
+                Number(false);      // 0
+                Number("10");       // 10
+                Number("  10");     // 10
+                Number("10  ");     // 10
+                Number(" 10  ");    // 10
+                Number("10.33");    // 10.33
+                Number("10,33");    // NaN
+                Number("10 33");    // NaN
+                Number("John");     // NaN
+        
+        - 💡If the number cannot be converted, NaN (Not a Number) is returned.
+        - Number() can also convert a date to a numbers
+            eg:
+                Number(new Date("1970-01-01"))  // 0
+            Number(new Date("1970-03-01"))  // 5097600000
+
+        - 💡The Date() method returns the number of milliseconds since 1.1.1970.
+
+
+    2️⃣ The parseInt() Method:
+        - parseInt() parses a string and returns a whole number. Spaces are allowed. Only the first
+            number is returned:
+
+            parseInt("-10");            // -10
+            parseInt("-10.33");         // -10
+            parseInt("10");             // 10
+            parseInt("10.33");          // 10
+            parseInt("10 6");           // 10
+            parseInt("10 years");       // 10
+            parseInt("years 10");       // NaN
+        
+        - ⚠️If the number cannot be converted, NaN (Not a Number) is returned.
+
+    3️⃣ The parseFloat() Method:
+        - parseFloat() parses a string and returns a number. Spaces are allowed. Only the first number
+            is returned:
+
+            parseFloat("10");           // 10
+            parseFloat("10.33");        // 10.33
+            parseFloat("10 6");         // 10
+            parseFloat("10 years");     // 10
+            parseFloat("years 10");     // NaN
+        
+        - ⚠️If the number cannot be converted, NaN (Not a Number) is returned.
+
+
+#) Number Object Methods(Static Methods):
+    - ⚠️ Static methods can only be used on Number cannot be used on variables:
+    - ⚠️ These methods can only be accessed like Number.isInteger().
+    - ⚠️ Using X.isInteger() where X is a variable, will result in an error:
+        TypeError X.isInteger is not a function.
+
+        Method                  Description
+      ---------------------------------------------------------------------------------------------------
         Number.isFinite()       // returns true if the argument is not Infinity, -iInfinity, nor Nan.
 
         Number.isInteger()      // returns true if the argument is an integer.
@@ -25,34 +179,70 @@ JS Number Methods:
 
         Number.isSafeInteger()  // returns true if the argument is a safe integer.
 
-        Number.parseInt()       // arses a string and returns a whole number. Spaces are allowed. Only the
+        Number.parseInt()       // parses a string and returns a whole number. Spaces are allowed. Only the
                                     first number is returned:
 
         Number.parseFloat()     // parses a string and returns a number. Spaces are allowed. Only the first
                                     number is returned:
     
 
-💡Safe Integers:
-        Safe integers are all integers from -(253 - 1) to +(253 - 1).
-        This is safe: 9007199254740991.
-        This is not safe: 9007199254740992.
+    1️⃣ The Number.isInteger() Method:
+        - The Number.isInteger() method returns true if the argument is an integer.
+            Number.isInteger(10);       // true
+            Number.isInteger(10.5);     // false
 
 
-#) The Number() Method:
-    - The Number() method can be used to convert JavaScript variables to numbers:
-        eg:
-            Number(true);       // 1
-            Number(false);      // 0
-            Number("10");       // 10
-            Number("  10");     // 10
-            Number("10  ");     // 10
-            Number(" 10  ");    // 10
-            Number("10.33");    // 10.33
-            Number("10,33");    // NaN
-            Number("10 33");    // NaN
-            Number("John");     // NaN
+    2️⃣ The Number.isFinite() Method:
+        - The Number.isFinite() method returns true if the argument is not Infinity, -iInfinity, nor Nan.
+            Number.isFinite(123);       // true
+
+
+    3️⃣ The Number.isNaN() Method:
+        - The Number.isNaN() method returns true if the argument is NaN (Not a Number).
+            Number.isNaN(123);      // false
+
+        - ⚠️Number.isNaN() is the preferred way to check for equality with NaN. You cannot test for
+            equality with NaN using == or ===.
+
+
+    4️⃣ The Number.isSafeInteger() Method:
+        - A safe integer is an integer that can be exactly represented as a double precision number.
+        - The Number.isSafeInteger() method returns true if the argument is a safe integer.
+            Number.isSafeInteger(10);       // true
+            Number.isSafeInteger(12345678901234567890);     // false
+
+        - 💡Safe integers are all integers from -(253 - 1) to +(253 - 1).
+            This is safe: 9007199254740991. This is not safe: 9007199254740992.
     
-    - Number() can also convert a date to a number.
-        eg:
-            Number(new Date("1970-01-01"))  // 0
-            Number(new Date("1970-03-01"))  // 5097600000
+
+    5️⃣ The Number.parseFloat() Method:
+        - Number.parseFloat() parses a string and returns a number. Spaces are allowed. Only the
+            first number is returned:
+
+            parseFloat("10");           // 10
+            parseFloat("10.33");        // 10.33
+            parseFloat("10 6");         // 10
+            parseFloat("10 years");     // 10
+            parseFloat("years 10");     // NaN
+
+
+    6️⃣ The Number.parseInt() Method:
+        - parseInt() parses a string and returns a whole number. Spaces are allowed. Only the first
+            number is returned:
+
+            parseInt("-10");            // -10
+            parseInt("-10.33");         // -10
+            parseInt("10");             // 10
+            parseInt("10.33");          // 10
+            parseInt("10 6");           // 10
+            parseInt("10 years");       // 10
+            parseInt("years 10");       // NaN
+        
+        - 💡The Number methods Number.parseInt() and Number.parseFloat() are the same as the
+            Global methods parseInt() and parseFloat(). The purpose of these two methods is
+            modularization of globals, to make it easier to use the same JavaScript code outside the
+            browser.
+
+
+
+

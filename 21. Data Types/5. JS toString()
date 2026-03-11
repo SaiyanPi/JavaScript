@@ -1,0 +1,61 @@
+JavaScript toString():
+
+- The JavaScript toString() method converts a variable (or a value) to a string.
+- It is a built-in method for many data types, including numbers, arrays, dates, and objects.
+- The method is useful for:
+    -> Converting data to a readable format for display
+    -> Ensuring type compatibility when a string is required
+    -> Customizing objects other user interfaces
+    -> Customizing objects for debugging
+
+
+#) JavaScript Array toString():
+    - When used on an array, toString() returns the array elements as a comma separated string.
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        let myList = fruits.toString();     // Banana,Orange,Apple,Mango
+
+
+#) JavaScript Date toString():
+    - When used on a date, toString() returns a human-readable date and time string.
+        const d = new Date();
+        let text = d.toString();    // Wed Mar 11 2026 17:02:49 GMT+0545 (Nepal Time)
+
+
+#) JavaScript Number toString():
+    - When used on a number, toString() returns the number as a string.
+        let x = 123;
+        let text = x.toString();    // 123
+    
+    - The toString() method can output numbers from base 2 to 36:
+        
+        let myNumber = 32;
+        "Hexatrigesimal (base 36): " + myNumber.toString(36) + "<br>" +
+        "Duotrigesimal (base 32): " + myNumber.toString(32) + "<br>" +
+        "Hexadecimal (base 16): " + myNumber.toString(16) + "<br>" +
+        "Duodecimal (base 12): " + myNumber.toString(12) + "<br>" +
+        "Decimal (base 10): " + myNumber.toString(10) + "<br>" +
+        "Octal (base 8): " + myNumber.toString(8) + "<br>" +
+        "Binary (base 2): " + myNumber.toString(2);
+
+        o/p:    Hexatrigesimal (base 36): w
+                Duotrigesimal (base 32): 10
+                Hexadecimal (base 16): 20
+                Duodecimal (base 12): 28
+                Decimal (base 10): 32
+                Octal (base 8): 40
+                Binary (base 2): 100000
+
+
+#) JavaScript Function toString():
+    - ⚠️ When used on a function, toString() returns the source code of the function as a string.
+
+
+#) JavaScript Object toString():
+    - When used on an object, toString() an object returns "[object Object]".
+    - To provide a meaningful string representation, it can be overridden in the object definition:
+
+        let person = {
+            firstname: "John",
+            lastname: "Doe",
+        }
+        let text = person.toString();   // [object Object]

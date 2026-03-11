@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Data Types</title>
+</head>
+<body>
+    <div>
+        <h3>JS Data Types</h3>
+        <p id="1"></p>
+        <hr>
+        <p id="2"></p>
+        <hr>
+        <p id="3"></p>
+
+        <script>
+            // ---------------------------- Numeric Types ----------------------------
+            // 1️⃣ Number
+            let length = 16;
+            let weight = 7.5;
+
+            // 2️⃣ BigInt
+            let x = 9007199254740991n;
+            let y = BigInt(9007199254740991);
+
+            // ---------------------------- String Type ----------------------------
+            // 1️⃣ String
+            let color = "Yellow";
+            let lastName = 'Johnson';
+
+            // 2️⃣ Boolean
+            let isActive = true;
+            let isLoggedIn = false;
+
+            // 3️⃣ Undefined
+            let a;
+            let b;
+            document.getElementById("1").innerHTML = "Value of a: " + a;   // undefined
+
+            // 4️⃣ Null
+            let c = null;
+
+            // 5️⃣ Symbol
+            let sym1 = Symbol();
+            console.log(sym1);      // Symbol()
+
+            // ----------------------------- Object Type ----------------------------
+            // 1️⃣ Object
+            let person = {firstName: "John", lastName: "Doe", age: 30};
+
+            // 2️⃣ Array Object
+            let fruits = ["Apple", "Banana", "Cherry"];
+
+            // 3️⃣ Date Object
+            let today = new Date("2026-03-25");
+
+            
+//------------------------------------------------------------------------------------------------------
+            let sum = 27 + "Volvo";
+            document.getElementById("2").innerHTML = "The result of 27 + 'Volvo' is: " + sum;   // "27Volvo"
+            
+            let sum1 = 5 + 10 + "Volvo";
+            document.getElementById("2").innerHTML += "<br>The result of 5 + 10 + 'Volvo' is: " + sum1;   // "15Volvo"
+            
+            let sum2 = "Volvo" + 5 + 10;
+            document.getElementById("2").innerHTML += "<br>The result of 'Volvo' + 5 + 10 is: " + sum2;   // "Volvo510"
+
+            // ------------------------------------------------------------------------------------------------------
+
+            let carName = null;
+            let vehicle;            // undefined
+
+            console.log(carName == vehicle);   // true (null and undefined are equal in value)
+            console.log(carName === vehicle);   // false (null and undefined are not equal in type)
+
+        </script>
+    </div>
+    
+</body>
+</html>

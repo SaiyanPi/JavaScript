@@ -1,0 +1,118 @@
+JavaScript Primitives:
+
+- In JavaScript, a primitive value is a single value with no properties or methods.
+- A JavaScript variable can hold 8 types of data (7 Primitive types or an Object type).
+
+#) JavaScript Strings:
+    - A string (or a text string) is a series of characters like "John Doe".
+    - Strings are written with quotes. You can use single or double quotes:
+        // Using double quotes:
+        let carName1 = "Volvo XC60";
+
+        // Using single quotes:
+        let carName2 = 'Volvo XC60';
+    
+    - You can use quotes inside a string, as long as they don't match the quotes surrounding
+        the string:
+        // Single quote inside double quotes:
+        let answer1 = "It's alright";
+
+        // Single quotes inside double quotes:
+        let answer2 = "He is called 'Johnny'";
+
+        // Double quotes inside single quotes:
+        let answer3 = 'He is called "Johnny"';
+
+
+#) JavaScript Numbers:
+    - All JavaScript numbers are stored as decimal numbers (floating point).
+    - Numbers can be written with, or without decimals:
+        // With decimals:
+        let x1 = 34.00;
+
+        // Without decimals:
+        let x2 = 34;
+
+
+#) Exponential Notation:
+    - Extra large or extra small numbers can be written with scientific (exponential) notation:
+        let y = 123e5;    // 12300000
+        let z = 123e-5;   // 0.00123
+
+
+#) Number Types:
+    - Most programming languages have many number types:
+        Whole numbers (integers):
+        byte (8-bit), short (16-bit), int (32-bit), long (64-bit)
+
+        Real numbers (floating-point):
+        float (32-bit), double (64-bit).
+
+    - Javascript numbers are always double (64-bit floating point).
+
+
+#) JavaScript BigInt:
+    - All JavaScript numbers are stored in a 64-bit floating-point format.
+    - JavaScript BigInt is a new datatype (ES2020) that can be used to store integer values that are
+        too big to be represented by a normal JavaScript Number.
+        
+        let x = BigInt("123456789012345678901234567890");
+
+
+#) JavaScript Booleans:
+    - Booleans can only have two values: true or false.
+        let x = 5;
+        let y = 5;
+        let z = 6;
+        (x == y)       // Returns true
+        (x == z)       // Returns false
+    
+    - Booleans are often used in conditional testing.
+
+
+#) Undefined:
+    - ⚠️ In JavaScript, a variable without a value, has the value undefined. The type is also undefined.
+
+        let car;    // Value is undefined, type is undefined
+    
+    - ⚠️ Any variable can be emptied, by setting the value to undefined. The type will also be undefined.
+
+        let car = "Volvo";
+        car = undefined;
+
+        document.getElementById("demo").innerHTML =
+        "<p>The value of car is " + car +
+        "<p>The typeof car is " + typeof car;
+
+        o/p:    The value of car is undefined
+                The typeof car is undefined
+
+
+#) Empty Values:
+    - ⚠️ An empty value has nothing to do with undefined.
+    - An empty string has both a legal value and a type.
+        
+        let car = "";    // The value is "", the typeof is "string"
+
+
+#) Datatype null:
+    - In JavaScript, a variable or an expression can obtain the datatype null in several ways.
+    - A function can return null or a variable can be assigned the null value:
+
+            let carName = null;
+            document.getElementById("demo").innerHTML = typeof carName;     // object
+
+        -> ⚠️ The typeof operator returns object for null.
+        -> ⚠️☠️ This is a historical quirk in JavaScript and does not indicate that null is an object.
+    
+    - ⚠️ The strict equality operator (===) compares both the value and the type of the operands.
+        It returns true only if both the operands values and types are null.
+    - ⚠️ The loose equality operator (==) also returns true for a null value, but it also returns true
+        if the value is undefined. 
+    - ⚠️ Using == is not recommended when checking for null.
+
+            let carName = null;
+            let vehicle;            // undefined
+
+            console.log(carName == vehicle);   // true (null and undefined are equal in value)
+            console.log(carName === vehicle);   // false (null and undefined are not equal in type)
