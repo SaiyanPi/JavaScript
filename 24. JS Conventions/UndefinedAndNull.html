@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undefined is not Null</title>
+</head>
+<body>
+    <div>
+        <p id="objs"></p>
+        <h3>You can test if an object exists by testing if the type is undefined:</h3>
+        <p id="1"></p>
+        <h3>But you cannot test if an object is null, because this will throw an error if the object is undefined:</h3>
+        <p id="2"></p>
+        <h3>To solve this problem, you must test if an object is not null, and not undefined.(undefined before null)</h3>
+        <b>1. if (bikes !== null && typeof bikes !== "undefined") ❌</b>
+        <p id="3"></p>
+        <b>2. if (typeof bikes !== "undefined" && bikes !== null)  ✅</b>
+        <p id="4"></p>
+        <script>
+            const cars = {
+                car1: "Saab",
+                car2: "Volvo",
+                car3: "BMW"
+            }
+
+            const companies = {
+                company1: "Google",
+                company2: "Microsoft",
+                company3: "Apple"
+            }
+
+            document.getElementById("objs").innerHTML =
+                `Objects: <br>
+            const cars = {
+                car1: "Saab",
+                car2: "Volvo",
+                car3: "BMW"
+            } <br>
+
+            const companies = {
+                company1: "Google",
+                company2: "Microsoft",
+                company3: "Apple"
+            }`;
+
+            document.getElementById("1").innerHTML =
+                `${typeof cars == "undefined" ? "cars does not exist but no error" : "cars exists"} <br>
+                ${typeof bikes == "undefined" ? "bikes does not exist but no error" : "bikes exists"}`;
+            
+            try {
+                    if(companies == null){
+                        document.getElementById("2").innerHTML = "companies does not exist but no error";
+                    } else {
+                        document.getElementById("2").innerHTML = "companies exists";
+                    }
+                } catch (error) {
+                    document.getElementById("2").innerHTML = " ❌ companies does not exist, throws error";
+                }
+            
+
+            try {
+                // throws an error because bikes is not defined try-catch block is just used to demonstrate
+                // that try statement does not execute because of error, and catch statement is executed
+                // instead. No need to get confused with try-catch block
+                if(bikes == null){
+                    document.getElementById("2").innerHTML += "<br>bikes does not exist but no error";
+                } else {
+                    document.getElementById("2").innerHTML += "<br>bikes exists";
+                }
+            } catch (error) {
+                document.getElementById("2").innerHTML += "<br> ❌ bikes does not exist, throws error";
+            }
+
+            
+            try {
+                  // 1. if (bikes !== null && typeof bikes !== "undefined") ❌
+                if (bikes !== null && typeof bikes !== "undefined") {
+                    document.getElementById("3").innerHTML = "bikes exists";
+                } else {
+                    document.getElementById("3").innerHTML = "bikes does not exist";
+                }
+            } catch {
+                document.getElementById("3").innerHTML = "bikes does not exist, throws error";
+            }
+
+          
+            try {
+                 // 2. if (typeof bikes !== "undefined" && bikes !== null)  ✅
+                if (typeof bikes !== "undefined" && bikes !== null) {
+                    document.getElementById("4").innerHTML = "bikes exists";
+                } else {
+                    document.getElementById("4").innerHTML = "bikes does not exist but no error";
+                }
+            } catch {
+                document.getElementById("4").innerHTML = " ❌ bikes does not exist, throw error";
+            }
+           
+        </script>
+    </div>
+    
+</body>
+</html>
