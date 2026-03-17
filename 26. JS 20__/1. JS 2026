@@ -1,0 +1,210 @@
+ECMAScript 2026:
+
+- ⚠️ The 2026 edition is not published yet. It normally ships in June.
+- ⚠️ As of November 2025, this is a list of the features in the draft, that is likely to be in the
+    ES2026.
+
+
+#) New Features in JavaScript 2026:
+    - ECMAScript 2026 introduces several features focused on improving resource management,
+        handling asynchronous operations, and enhancing data manipulation:
+        👉 New JavaScript Date Object - Temporal Date
+        👉 Resource management with using and await using 
+        👉 Error detection with Error.isError()
+        👉 Asynchronous array creation with Array.fromAsync()
+        👉 Base64 and hexadecimal encodings for Uint8Array
+        👉 Immutability with Records & Tuples (Stage 3 proposal)
+        👉 Pattern Matching (Stage 3 proposal)
+
+
+#) The Temporal API:
+    - The Temporal API in JavaScript 2026 provides standard objects and functions for working
+        with dates and times.
+    - From ES2026, the Temporal API is the standard for modern date and time management in JavaScript,
+        designed to replace the legacy Date object.
+    - Unlike Date, Temporal objects are immutable and provide first-class support for time zones and
+        non-Gregorian calendars.
+
+
+#) Resource Management with using:
+    - JavaScript 2026 added two keywords to automatically manage and dispose resources (like file
+        handles or database connections) when they go out of scope, reducing the need for explicit
+        try...finally blocks.
+        👉 using provides synchronous cleanup of block-scoped variables.
+        👉 await using provides asynchronous cleanup for resources like network streams.
+
+
+#) Error Detection with Error.isError():
+    - Error.isError() is a static method to reliably check if a value is an Error object, improving
+        error handling and debugging.
+
+
+#) New Array with Array.fromAsync():
+    - Array.fromAsync() is a feature that allows developers to create a new Array instance from
+        asynchronous iterables, array-like objects, or Promises, streamlining the handling of data
+        from async sources.
+    
+
+#) New Uint8Array Methods in ES2026:
+    - Base64 and Hexadecimal Encodings for Uint8Array.
+    - These new static methods facilitate working with binary data by adding direct conversion between
+        Uint8Array objects and Base64 or hexadecimal strings.
+
+        👉 Uint8Array fromBase64()
+            -> Creates a Uint8Array object from a base64-encoded string
+
+        👉 Uint8Array toBase64()
+            -> Returns a base64-encoded string from the data in an int8Array
+
+        👉 Uint8Array fromHex()
+            -> Creates a Uint8Array object from a hexadecimal string
+
+        👉 Uint8Array toHex()
+            -> Returns a hex-encoded string from the data in an int8Array
+
+___________________________________________________________________________________________________________
+
+#) Explicit Resource Management:
+
+    1️⃣ The using Keyword:
+        - The using keyword is an addition to JavaScript 2026. It provides a mechanism for managing
+            resources that require explicit disposal.
+        - It declares a block-scoped variable, similar to const, but with the difference that it\
+            guarantees synchronous disposal of the used resource when the variable goes out of scope.
+
+                <script>
+                    class MyResource {
+                        constructor(name) {
+                            this.name = name;
+                            myDisplay(`Resource ${this.name} acquired.`);
+                        }
+
+                        // without using(say const resource), we would need to manually call a dispose method
+                        [Symbol.dispose]() {
+                            myDisplay(`Resource ${this.name} disposed.`);
+                        }
+                    }
+
+                    function manageResource() {
+                        // const resource = new MyResource("Database connection");
+                        using resource = new MyResource("Database connection");
+                        // Use the resource here
+                        myDisplay(`Using the resource: ${resource.name}`);
+                    }
+
+                    function myDisplay(text) {
+                        document.getElementById("1").innerHTML += `${text} <br>`;
+                    }
+
+                    manageResource();
+                </script>
+
+                o/p:    Resource Database connection acquired.
+                        Using the resource: Database connection
+                        Resource Database connection disposed.
+
+            -> 💡without 'using' keyword, we would need to manually call a dispose method
+                In other word, "Resource Database connection disposed." would not display unless we call
+                the dispose method manually
+        
+        - The using keyword simplifies resource management by automatically handling the cleanup
+            process, reducing the risk of resource leaks and improving code readability compared
+            to manual try...finally blocks for disposal.
+            👉 Resource Management:
+                -> using is designed for objects that implement the Symbol.dispose method, which 
+                    defines the cleanup logic for the resource.
+
+            👉 Synchronous Disposal:
+                -> When a variable declared with using exits its scope (at the end of a block or
+                    function), its Symbol.dispose method is automatically called.
+
+            👉 Asynchronous Disposal:
+                -> For resources requiring asynchronous cleanup, the await using declaration can be
+                    employed. This ensures that the disposal process is awaited before the variable
+                    fully goes out of scope.
+
+            👉 Block-Scoped:
+                -> Like const, variables declared with using are local to the block in which they are
+                    declared, and must be initialized at the time of declaration.
+
+            👉 Immutable:
+                -> Like to const, variables declared with using cannot be reassigned after initialization.
+        
+        - Browser Support: using is already supported in many browsers.
+    
+
+    2️⃣ await using:
+        - Inspired by other languages, JavaScript 2026 introduces using blocks for automatic cleanup of
+            resources like file handles, database connections, or network streams.
+        - This is especially beneficial for asynchronous operations:
+
+                async function processFile() {
+                    using fileHandle = await openFile('data.txt');
+
+                    // Work with fileHandle here
+
+                } // fileHandle is automatically closed here
+        
+        - Browser Support: using is already supported in many browsers.
+    
+
+    3️⃣ Error.isError():
+        - The Error.isError() static method checks whether a value is an Error object.
+
+                Error.isError(new TypeError());         // true
+                Error.isError(new ReferenceError());    // true
+                Error.isError(new userDetail());        // false
+                Error.isError({ name: "Error" });       // false
+        
+        - Error.isError() is a safe alternative to instanceof Error which fails across realms.
+        - Realm-safe error check:
+            An Error from an iframe verifies with Error.isError() and fails with instanceof.
+        - Browser Support: using is already supported in many browsers.
+    
+
+    4️⃣ Array.fromAsync():
+
+            <script>
+                async function* asyncGenerator() {
+                    // yield 1;
+                    // yield 2;
+                    // yield 3;
+
+                    yield Promise.resolve(1);
+                    yield Promise.resolve(2);
+                    yield Promise.resolve(3);
+                }
+
+                async function processAsyncData() {
+                    const arr = await Array.fromAsync(asyncGenerator());
+                    document.getElementById("1").innerHTML = `Processed data: ${arr.join(", ")}`;
+                }
+
+                processAsyncData();
+            </script>
+
+            o/p:    Processed data: 1, 2, 3
+        
+        - Browser Support: using is already supported in many browsers.
+    
+
+    5️⃣ Uint8Array to/fromBase64():
+
+            let string = 'W3Schools 123';
+            const arr = Uint8Array.fromBase64(string);  // 91,116,156,134,138,37,179,93,183  
+
+            const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);
+            let text = arr.toBase64();  // W3Schools123
+        
+        - Browser Support: using is already supported in many browsers.
+    
+
+    6️⃣ Uint8Array to/fromHex():
+
+            let text = '5b749c868a25b35db7';
+            const arr = Uint8Array.fromHex(text);   // 91,116,156,134,138,37,179,93,183
+
+            const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);
+            let text = arr.toHex();     // 5b749c868a25b35db7
+        
+        - Browser Support: using is already supported in many browsers.

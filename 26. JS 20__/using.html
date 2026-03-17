@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>JS Resource Management</h3>
+        <b>The using keyword:</b>
+        <p id = "1"></p>
+
+        <script>
+            class MyResource {
+                constructor(name) {
+                    this.name = name;
+                    myDisplay(`Resource ${this.name} acquired.`);
+                }
+
+                // without using(say const resource), we would need to manually call a dispose method
+                [Symbol.dispose]() {
+                    myDisplay(`Resource ${this.name} disposed.`);
+                }
+            }
+
+            function manageResource() {
+                // const resource = new MyResource("Database connection");
+                using resource = new MyResource("Database connection");
+                // Use the resource here
+                myDisplay(`Using the resource: ${resource.name}`);
+            }
+
+            function myDisplay(text) {
+                document.getElementById("1").innerHTML += `${text} <br>`;
+            }
+
+            manageResource();
+        </script>
+    </div>
+    
+</body>
+</html>

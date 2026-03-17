@@ -1,0 +1,128 @@
+JavaScript Versions:
+
+#) Current JavaScript Version
+    - The current JavaScript version is ES2025.
+    - ECMAScript is the official name of the JavaScript standard.
+    - JavaScript was invented by Brendan Eich in 1995 and became an ECMA standard in 1997.
+    - The first ECMAScript versions were abbreviated by numbers. (ES1, ES2, ES3, ES5, ES6).
+    - From 2016, versions are named by year (ECMAScript 2016, 2017, 2018, ..., 2025).
+
+
+#) ECMAScript Editions:
+
+                Official Name	                    Most Important Features
+            ----------------------------------------------------------------------------------
+                ECMAScript 1 (1997)	                FIRST EDITION
+            ----------------------------------------------------------------------------------
+                ECMAScript 2 (1998)	                ONLY EDITORIAL CHANGES
+            ----------------------------------------------------------------------------------
+                ECMAScript 3 (1999)                 Regular expressions
+                                                    Error handling (try...catch)
+                                                    The switch keyword
+                                                    The do...while loop
+            ----------------------------------------------------------------------------------
+                ECMAScript 4	                    WAS NEVER RELEASED
+            ----------------------------------------------------------------------------------
+                ECMAScript 5 (2009)                 The "use strict" Directive
+                                                    JSON support
+                                                    The String trim() method
+                                                    The Date.now() method
+                                                    String property access [ ]
+                                                    Many new Array methods
+                                                    Many new Object methods
+            ----------------------------------------------------------------------------------
+                ECMAScript 6 (2015)                 The let and const keywords
+                                                    Default parameter values
+                                                    Rest parameter
+                                                    Destructuring assignment
+                                                    The spread operator
+                                                    Sets and Maps
+                                                    Classes
+                                                    Promises
+                                                    Modules
+                                                    For...in Loop
+                                                    Many new Array methods
+                                                    Many new String methods
+                                                    Many new Math methods
+            ----------------------------------------------------------------------------------
+                ECMAScript 2016                     The ** Exponentiation Operator
+                                                    The Array includes() method
+            ----------------------------------------------------------------------------------
+                ECMAScript 2017                     The String padStart() method
+                                                    The String padEnd() method
+                                                    The Object values() method
+                                                    The Object entries() method
+                                                    The Object getAllPropertyDescriptors() method
+                                                    The async and await keywords
+            ----------------------------------------------------------------------------------
+                ECMAScript 2018                     Asyncronus iteration
+                                                    Promese finally
+                                                    Array rest elements
+                                                    Object rest properties
+                                                    Shared memory
+                                                    new Regexp features (/s, \p{}, ?<=y, ?<name>)
+            ----------------------------------------------------------------------------------
+                ECMAScript 2019                     String trimStart()
+                                                    String trimEnd()
+                                                    Object fromEntries()
+                                                    Optional catch binding
+                                                    Array flat()
+                                                    Array flatMap()
+                                                    Revised Array sort()
+                                                    Revised JSON stringify()
+                                                    Revised Function toString()
+                                                    Separator symbols in srings
+            ----------------------------------------------------------------------------------
+                ECMAScript 2020                     BigInt
+                                                    String matchAll()
+                                                    Promise allSettled()
+                                                    Dynamic import
+                                                    globalThis
+                                                    import.meta
+                                                    Namespace exports
+                                                    New Operators (??, ?. &&=, ||=, ??=)
+            ----------------------------------------------------------------------------------
+                ECMAScript 2021                     Promise any()
+                                                    String replaceAll()
+                                                    Mumeric separator
+            ----------------------------------------------------------------------------------
+                ECMAScript 2022                     Array at()
+                                                    String at()
+                                                    RegExp /d
+                                                    Object hasOwn() error cause
+                                                    await import
+                                                    Class fields
+                                                    Private methods and fields
+            ----------------------------------------------------------------------------------
+                ECMAScript 2023                     #!
+                                                    Array findLast()
+                                                    Array findlastIndex()
+                                                    Array toReversed()
+                                                    Array toSorted()
+                                                    Array toSpliced()
+                                                    Array with()
+                                                    Array findLast()
+            ----------------------------------------------------------------------------------
+                ECMAScript 2024                     Map groupBy()
+                                                    Object groupBy()
+                                                    String isWellFormed()
+                                                    String toWellFormed()
+                                                    Promise withResolvers()
+                                                    Atomics waitAsync
+            ----------------------------------------------------------------------------------
+                ECMAScript 2025                     RegExp /v flag
+                                                    RegExp escape()
+                                                    Float16Array
+                                                    Math f16round()
+                                                    Promise try()
+                                                    Import Attributes 7 new Set methods
+            ----------------------------------------------------------------------------------
+                ECMAScript 2026                     Error isError()
+                                                    Array fromAsync()
+                                                    The using keyword
+                                                    The await using construcy
+                                                    Uin8Array.toBase64()
+                                                    Uin8Array.fromBase64()
+                                                    Uin8Array.toHex()
+                                                    Uin8Array.fromHex()
+            ----------------------------------------------------------------------------------

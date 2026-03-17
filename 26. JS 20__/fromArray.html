@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>The Array.fromAsync() Method</div>
+    <p id="1"></p>
+
+    <script>
+        async function* asyncGenerator() {
+            // yield 1;
+            // yield 2;
+            // yield 3;
+
+            yield Promise.resolve(1);
+            yield Promise.resolve(2);
+            yield Promise.resolve(3);
+        }
+
+        async function processAsyncData() {
+            const arr = await Array.fromAsync(asyncGenerator());
+            document.getElementById("1").innerHTML = `Processed data: ${arr.join(", ")}`;
+        }
+
+        processAsyncData();
+    </script>
+</body>
+</html>

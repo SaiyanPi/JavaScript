@@ -43,7 +43,7 @@ JS Assignment:
 #) Logical OR assignment operator(||=):
     - The Logical OR assignment operator is used between two values.
     - The ||= operator is an ES2020 feature.
-    - IF THE FIRST VALUE IS FALSE, THE SECOND VALUE IS ASSIGNED.
+    - 💡IF THE FIRST VALUE IS FALSE, THE SECOND VALUE IS ASSIGNED.
 
             let x = false;
             let y = x ||= 10;   // 10
@@ -63,7 +63,7 @@ JS Assignment:
     - The ??= operator is an ES2020 feature.
     - IF THE FIRST VALUE IS UNDEFINED OR NULL, THE SECOND VALUE IS ASSIGNED.
 
-            let x;
+            let x;  // undefined
             x ??= 10;   // 10
 
             let x = 0;
