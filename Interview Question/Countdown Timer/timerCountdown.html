@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Timer Countdown</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h2>Timer Countdown with JavaScript</h2>
+        <hr>
+        <br>
+        <p>Please enter the time (in seconds):</p>
+        <input id="timeInput" type="text">
+        <br><br>
+        <button onclick="countDown()">Start Countdown</button>
+        <p id="disp" style="font-size:100px;"></p>
+
+        <script>
+            // version 1: Does not show the live countdown, only shows "Time's up!" 
+            function countDown() {
+                let secs = document.getElementById("timeInput").value;
+                try {
+                    // validation
+                    if(secs.trim() == "") throw "Time input is empty";
+                    if(isNaN(secs)) throw "Time input is not a number";
+                    secs = Number(secs);
+                    if(secs < 0) throw "Time input cannot be negative";
+                    if(secs == 0 || secs == 1) throw "Time input should be more than 1 second";
+                    // setTimeout function expression
+                    setTimeout(() => {
+                        document.getElementById("disp").innerHTML = "Time's up!";
+                    }, secs * 1000);
+
+                } catch (error) {
+                    alert(error);
+                    return;
+                }
+            }
+            
+            // function countDown() {
+            //     let secs = document.getElementById("timeInput").value;
+            //     try {
+            //         if(secs.trim() == "") throw "Time input is empty";
+            //         if(isNaN(secs)) throw "Time input is not a number";
+            //         secs = Number(secs);
+            //         if(secs < 0) throw "Time input cannot be negative";
+            //         if(secs == 0 || secs == 1) throw "Time input should be more than 1 second";
+                    
+
+            //         let endTime = Date.now() + secs;
+            //         const remaining = Math.max(0, endTime - Date.now());
+
+            //         const seconds = Math.ceil(remaining / 1000);
+
+            //         const display = `${seconds.toString().padStart(2, "0")}`;
+                    
+            //         document.getElementById("disp").innerHTML = remaining;
+            //         if(remaining > 0) {
+            //             setTimeout(() => {
+            //                 document.getElementById("disp").innerHTML = "Time's up!";
+            //             }, secs * 1000);
+
+            //         }
+                   
+            //     } catch (error) {
+            //         alert(error);
+            //         return;
+            //     }
+            // }
+        </script>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer V2</title>
+</head>
+<body>
+    <div style = "text-align: center;">
+        <h2>Countdown Timer V2</h2>
+        <hr>
+        <br>
+        <p>Please enter the time (in seconds):</p>
+        <input id = "timeInput" type = "text" placeholder = "Time in seconds">
+        <br><br>
+        <button id = "startBtn">Start Countdown</button>
+        <p id="disp" style="font-size:50px;"></p>
+
+        <script>
+            const inputVal = document.getElementById("timeInput");
+            const start = document.getElementById("startBtn");
+            const display = document.getElementById("disp");
+
+            let endTime = null;
+            // let timerId = null;
+
+            start.addEventListener("click", () => {
+                const seconds = parseInt(inputVal.value);   // return NaN if input is not a number
+
+                if(isNaN(seconds) || seconds <= 0) {
+                    display.textContent = `Please enter a positive number greater than 0.`;
+                    return;
+                }
+
+                endTime = Date.now() + seconds * 1000;  // into milliseconds
+
+                update();
+            });
+
+            function update() {
+                const remaining = Math.max(0, endTime - Date.now());
+                const secs = Math.ceil(remaining / 1000);   // back to seconds
+                display.textContent = secs; // live update of remaining seconds
+
+                if(remaining > 0) {
+                    setTimeout(update, 1000);
+                }
+
+                if(remaining === 0) {
+                    display.textContent = "Time's up!";
+                }
+            }
+        </script>
+    </div>
+    
+</body>
+</html>

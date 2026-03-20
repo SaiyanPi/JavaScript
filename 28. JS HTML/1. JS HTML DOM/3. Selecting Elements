@@ -1,0 +1,182 @@
+Selecting DOM Elements:
+
+#) Finding HTML Elements:
+    - Often, with JavaScript, you want to manipulate HTML elements.
+    - To do so, you have to find the elements first. There are several ways to do this:
+        1️⃣ Finding HTML elements by id
+        2️⃣ Finding HTML elements by tag name
+        3️⃣ Finding HTML elements by class name
+        4️⃣ Finding HTML elements by CSS selectors
+        5️⃣ Finding HTML elements by HTML object collections
+
+
+1️⃣ Finding HTML Element by Id:
+    - The easiest way to find an HTML element in the DOM, is by using the element id.
+    - This example finds the element with id="intro":
+
+        <p id="intro">Finding HTML Elements by Id</p>
+        <p>This example demonstrates the <b>getElementsById</b> method.</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const element = document.getElementById("intro");
+
+            document.getElementById("demo").innerHTML = 
+                "The text from the intro paragraph is: " + element.innerHTML;
+        </script>
+
+        o/p: The text from the intro paragraph is: Finding HTML Elements by Id
+    
+    - If the element is found, the method will return the element as an object (in element).
+    - ⚠️If the element is not found, element will contain null.
+
+
+2️⃣ Finding HTML Elements by Tag Name:
+    - Finding HTML Elements by Tag Name
+
+        <p>Finding HTML Elements by Tag Name.</p>
+        <p>This example demonstrates the <b>getElementsByTagName</b> method.</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const element = document.getElementsByTagName("p");
+
+            document.getElementById("demo").innerHTML = 
+                'The text in first paragraph (index 0) is: ' + element[0].innerHTML;
+
+        </script>
+
+        o/p: The text in first paragraph (index 0) is: Finding HTML Elements by Tag Name.
+
+    - 💡In the above example element[1] would be: This example demonstrates the getElementsByTagName
+        method.
+    - This example finds the element with id="main", and then finds all <p> elements inside "main":
+
+        <div id="main">
+        <p>Finding HTML Elements by Tag Name</p>
+        <p>This example demonstrates the <b>getElementsByTagName</b> method.</p>
+        </div>
+
+        <p id="demo"></p>
+
+        <script>
+            const x = document.getElementById("main");
+            const y = x.getElementsByTagName("p");
+
+            document.getElementById("demo").innerHTML = 
+                'The first paragraph (index 0) inside "main" is: ' + y[0].innerHTML;
+        </script>
+
+        o/p: The first paragraph (index 0) inside "main" is: Finding HTML Elements by Tag Name
+
+
+3️⃣ Finding HTML Elements by Class Name:
+    - If you want to find all HTML elements with the same class name, use getElementsByClassName().
+    - This example returns a list of all elements with class="intro".
+
+        <p>Finding HTML Elements by Class Name.</p>
+        <p class="intro">Hello World!</p>
+        <p class="intro">This example demonstrates the <b>getElementsByClassName</b> method.</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const x = document.getElementsByClassName("intro");
+            document.getElementById("demo").innerHTML = 
+                'The first paragraph (index 0) with class="intro" is: ' + x[0].innerHTML;
+        </script>
+
+        o/p: The first paragraph (index 0) with class="intro" is: Hello World!
+
+
+4️⃣ Finding HTML Elements by CSS Selectors:
+    - The querySelector() Method: 
+
+        <p class="demo"></p>
+
+        <script>
+            // Access a paragraph Element
+            const myPara = document.querySelector(".demo");
+
+            // Change the content of the Element
+            myPara.innerHTML = "Hello World!";
+        </script>
+
+        o/p: Hello World!
+
+        -> ⚠️querySelector() returns only the first match
+    
+    - The querySelectorAll() Method:
+
+        <p class="demo">One</p>
+        <p class="demo">Two</p>
+
+        <script>
+            // Access a paragraph Element
+            const myItems = document.querySelectorAll(".demo");
+
+            // Change the content of the Element
+            myItems[0].innerHTML = "First";
+        </script>
+
+        o/p:    First
+                Two
+        
+        -> ⚠️If you want to find all HTML elements that match a specified CSS selector (id, class
+            names, types, attributes, values of attributes, etc), use the querySelectorAll() method.
+        -> This example returns a list of all <p> elements with class="intro".
+
+            <p>Finding HTML Elements by Query Selector</p>
+            <p class="intro">Hello World!.</p>
+            <p class="intro">This example demonstrates the <b>querySelectorAll</b> method.</p>
+
+            <p id="demo"></p>
+
+            <script>
+                const x = document.querySelectorAll("p.intro");
+                document.getElementById("demo").innerHTML = 
+                'The first paragraph (index 0) with class="intro" is: ' + x[0].innerHTML;
+            </script>
+
+            o/p: The first paragraph (index 0) with class="intro" is: Hello World!.
+
+
+5️⃣ Finding HTML Elements by HTML Object Collections:
+    - This example finds the form element with id="frm1", in the forms collection, and displays all
+        element values:
+
+        <form id="frm1" action="/action_page.php">
+            First name: <input type="text" name="fname" value="Donald"><br>
+            Last name: <input type="text" name="lname" value="Duck"><br><br>
+            <input type="submit" value="Submit">
+        </form> 
+
+        <p id="demo"></p>
+
+        <script>
+            const x = document.forms["frm1"];
+            let text = "";
+            for (let i = 0; i < x.length; i++) {
+                text += x.elements[i].value + "<br>";
+            }
+
+            document.getElementById("demo").innerHTML = text;
+        </script>
+
+        o/p:    Donald
+                Duck
+                Submit
+    
+    - The following HTML objects (and object collections) are also accessible:
+        👉 document.anchors
+        👉 document.body
+        👉 document.documentElement
+        👉 document.embeds
+        👉 document.forms
+        👉 document.head
+        👉 document.images
+        👉 document.links
+        👉 document.scripts
+        👉 document.title

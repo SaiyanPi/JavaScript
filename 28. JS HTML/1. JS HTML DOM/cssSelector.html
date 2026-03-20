@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM</title>
+</head>
+<body>
+    <div>
+        <h2>Finding HTML Elements by Tag Name:</h2>
+        <hr>
+
+        <h3 class="fruit">Apple</h3>    
+        <h3 class="fruit">Apple</h3>
+        <p>Apple is a fruit. It taste sweet.</p>
+        <p>Different variation of Apple could be</p>
+        <ul>
+            <li>Green Apple</li>
+            <li>Red Apple</li>
+            <li>Yellow Apple</li>
+        </ul>
+    </div>
+    <p id="demo"></p>
+
+    <script>
+        // querySelector only returns the first match
+        const element1 = document.querySelector(".fruit");
+        element1.innerHTML = "Syau";
+
+        const element2 = document.querySelectorAll("h3.fruit")
+        element2[1].innerHTML = "Mango"
+        
+        const display = document.getElementById("demo");
+
+        display.innerHTML += `The first text(index 0) with class "fruit" is: ${element2[0].innerHTML}`;
+        display.innerHTML += `<br> The second text(index 1) with class "fruit" is: ${element2[1].innerHTML}`;
+       
+    </script>
+</body>
+</html>

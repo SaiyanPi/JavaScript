@@ -1,0 +1,84 @@
+HTML DOM API: (Application Programming Interface)
+
+- The DOM API (Application Programming Interface) is a set of METHODS and PROPERTIES that allow
+    JavaScript to change the content, structure, and style of any HTML elements.
+    👉 An API Method is an Action that you can do on an HTML element.
+    👉 An API Property is a Value that you can access on an HTML element.
+
+        <html>
+            <body>
+
+                <p id="demo"></p>
+
+                <script>
+                    // Access a paragraph Element
+                    const myPara = document.getElementById("demo");
+
+                    // Change the content of the Element
+                    myPara.innerHTML = "Hello World!";
+                </script>
+
+            </body>
+        </html>
+    
+    -> document is the HTML document.
+    -> getElementById() is a document method.
+    -> myPara = document.getElementById("demo") retrieves the "demo" element.
+    -> innerHTML is an element property.
+    -> myPara.innerHTML = "Hello World!" changes the property.
+
+- HTML DOM API Abilities:
+    1️⃣ Find and select elements
+    2️⃣ Change element content and attributes
+    3️⃣ Add, remove, or modify elements
+    4️⃣ Change CSS styles
+    5️⃣ Add event listeners to react to user input
+
+- The DOM API is a standard for how to get, change, add, or delete HTML DOM elements.
+- JavaScript is the language used in browsers to access the DOM through the API.
+
+
+#) API Methods and Properties:
+    - Developers use global objects like document and window as entry points to any API.
+    - If you want to access any element in an HTML page, you always start with accessing
+        the document object. The document object represents your web page.
+    - To manipulate HTML with JavaScript, you first need to select an element.
+    - Below are some examples of how you can use the document object to access HTML:
+
+
+        Method	                                Description
+    -----------------------------------------------------------------------------------------------
+                            1️⃣ Selecting HTML Elements:
+        document.getElementById(id)	            Find an element by element id
+        document.getElementsByTagName(name)	    Find elements by tag name
+        document.getElementsByClassName(name)	Find elements by class name
+        document.querySelector(selector)	    Find the first element that matches a CSS selector
+        document.querySelectorAll(selector)	    Find all elements that match a CSS selector
+
+
+                            2️⃣ Accessing Element Content:
+        element.innerHTML	                    The HTML content of an element
+        element.textContent	                    he text content of an element
+
+
+                            3️⃣ Accessing Element Attributes:
+        element.setAttribute()	                Create or set a new attribute
+
+
+                            4️⃣ Manipulating Structure:
+        document.createElement()	            Creates a new HTML element
+        document.removeChild()	                Remove an HTML element
+        document.appendChild()	                Add an HTML element
+        document.replaceChild()	                Replace an HTML element                    
+
+
+                            5️⃣ Adding Event Handlers:
+        document.getElementById(id).onclick =   Adding event handler code to an onclick event
+         function(){code}	                   
+
+
+    - 💡The document object is the owner of all other objects in your web page.
+
+      
+
+    

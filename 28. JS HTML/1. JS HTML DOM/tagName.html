@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM</title>
+</head>
+<body>
+    <div id="main">
+        <h2>Finding HTML Elements by Tag Name:</h2>
+        <hr>
+
+        <h3>Apple</h3>
+        <p>Apple is a fruit. It taste sweet.</p>
+        <p>Different variation of Apple could be</p>
+        <ul>
+            <li>Green Apple</li>
+            <li>Red Apple</li>
+            <li>Yellow Apple</li>
+        </ul>
+    </div>
+    <p id="demo"></p>
+
+    <script>
+        // finds all <li> and <p> elements
+        const element1 = document.getElementsByTagName("li");
+        const element2 = document.getElementsByTagName("p");
+        
+        // finds element with id="main" and then finds all h3 inside "main"
+        const x = document.getElementById("main");
+        const element3 = x.getElementsByTagName("h3");
+
+        const display = document.getElementById("demo");
+        
+        display.innerHTML = 
+        `Apple variations are: <br> ${element1[0].innerHTML}, ${element1[1].innerHTML},
+        ${element1[2].innerHTML}`
+        
+        display.innerHTML +=
+        `<br> Discription of Apple: <br> ${element2[0].innerHTML} ${element2[1].innerHTML}`;
+
+        display.innerHTML +=
+        `<br> Heading inside "main" is: <br> ${element3[0].innerHTML}`;
+    </script>
+</body>
+</html>

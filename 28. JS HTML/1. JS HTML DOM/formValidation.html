@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <div style = "text-align: center;">
+        <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+            First Name: <input type="text" name="fname" placeholder="Your first name"> <br><br>
+            Last Name: <input type="text" name="lname" placeholder="Your last name"> <br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <p id="1"></p>
+    </div>
+    
+    <script>
+        function validateForm() {
+            // let x = document.forms["myForm"]["fname"].value;
+            // let y = document.forms["myForm"]["lname"].value;
+
+            const inputValue = document.forms["myForm"]
+            let x = inputValue["fname"].value;
+            let y = inputValue["lname"].value;
+
+            if( x == "") {
+                alert("First Name must be filled out");
+                return false;
+            }
+
+            if( y == "") {
+                alert("Last Name must be filled out");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+HTML DOM - Changing HTML:
+
+- The HTML DOM allows JavaScript to change both the text and the content of HTML elements.
+- The easiest way to modify the content is by using the innerHTML property:
+    
+    document.getElementById(id).innerHTML = new HTML
+
+
+#) The innerHTML Property:
+    - The easiest way to get the content of an element is by using the innerHTML property.
+    - The innerHTML property is useful for getting or replacing the content of HTML elements.
+    - 💡The innerHTML property can be used to get or change any HTML element, including <html>
+        and <body>.
+    
+    eg: Change the content of an <h1> element:
+
+        <!DOCTYPE html>
+        <html>
+            <body>
+
+            <h1 id="id01">Old Heading</h1>
+            <script>
+                const element = document.getElementById("id01");
+                element.innerHTML = "New Heading";
+            </script>
+            </body>
+        </html>
+
+        o/p:    New Heading
+
+
+#) Changing an Attribute:
+    - To change the value of an HTML attribute, use this syntax:
+
+        document.getElementById(id).attribute = new value
+
+    - eg: Changes the value of the src attribute of an <img> element:
+
+        <!DOCTYPE html>
+        <html>
+            <body>
+
+            <img id="myImage" src="smiley.gif">
+
+            <script>
+                document.getElementById("myImage").src = "landscape.jpg";
+            </script>
+
+            </body>
+        </html>
+
+        -> The HTML document above contains an <img> element with id="myImage"
+        -> We use the HTML DOM to get the element with id="myImage"
+        -> A JavaScript changes the src attribute of that element from "smiley.gif" to "landscape.jpg"
+
+
+#) Dynamic HTML content:
+    - JavaScript can create dynamic HTML content:
+
+        <!DOCTYPE html>
+        <html>
+            <body>
+
+            <p id="demo"></p>
+
+            <script>
+                document.getElementById("demo").innerHTML = "Date : " + Date();
+            </script>
+
+            </body>
+        </html> 
+
+
+#) document.write():
+    - In JavaScript, document.write() can be used to write directly to the HTML output stream:
+
+        <!DOCTYPE html>
+        <html>
+            <body>
+
+            <p>Bla bla bla</p>
+
+            <script>
+                document.write(Date());
+            </script>
+
+            <p>Bla bla bla</p>
+
+            </body>
+        </html>
+
+        o/p:    Bla, bla, bla
+                Thu Mar 19 2026 15:06:14 GMT+0545 (Nepal Time)
+                Bla, bla, bla
+    
+    - ⚠️☠️ Warning ! Never use document.write() after the document is loaded. It will overwrite the
+        document.

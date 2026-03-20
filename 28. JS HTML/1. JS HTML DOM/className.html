@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM</title>
+</head>
+<body>
+    <div>
+        <h2>Finding HTML Elements by Tag Name:</h2>
+        <hr>
+
+        <h3>Apple</h3>
+        <p>Apple is a fruit. It taste sweet.</p>
+        <p>Different variation of Apple could be</p>
+        <ul>
+            <li class="type">Green Apple</li>
+            <li class="type">Red Apple</li>
+            <li class="type">Yellow Apple</li>
+        </ul>
+    </div>
+    <p id="demo"></p>
+
+    <script>
+        const element1 = document.getElementsByClassName("type");
+        const display = document.getElementById("demo");
+        
+        display.innerHTML = 
+        `Apple Types are: <br> ${element1[0].innerHTML}, ${element1[1].innerHTML}, ${element1[2].innerHTML}`
+    </script>
+    
+</body>
+</html>

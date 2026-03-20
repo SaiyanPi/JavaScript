@@ -37,7 +37,7 @@ JS Code Blocks:
     - This helps prevent unintended variable overwrites and promotes better code organization:
 
         {
-        let x = 10;
+            let x = 10;
             // x is accessible here
         }
 
