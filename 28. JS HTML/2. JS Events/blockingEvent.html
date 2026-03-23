@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blocking Events</title>
+</head>
+<body>
+    <div>
+        <h3>Blocking Events</h3>
+        <a href="https://www.w3schools.com/js/js_events_management.asp" id="link">Go to W3Schoold</a>
+        <p id="demo"></p>
+
+        <script>
+            const link = document.getElementById("link");
+
+            // Let link listen for click
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.getElementById("demo").innerHTML = "Link Blocked!";
+            });
+        </script>
+    </div>
+    
+</body>
+</html>

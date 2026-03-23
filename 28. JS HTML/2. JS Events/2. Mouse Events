@@ -1,0 +1,95 @@
+JavaScript Mouse Events:
+
+- Mouse Events happen when the user interacts with the mouse.
+- Common Mouse Events:
+    👉 click
+    👉 dblclick
+    👉 mouseover / mouseout
+    👉 mousemove
+    👉 mousedown / mouseup
+
+- 💡Mouse events are crucial for creating interactive web pages and applications, triggerin
+    specific functions in response to user actions like mouse clicks, scrolls, and movements.
+
+#) Mouseover and Mouseout:
+
+    <div>
+        <h3>Mouseover and Mouseout</h3>
+
+        <div id="box" style="width:200px;height:100px;padding:16px;border:1px solid #000;">
+            Move mouse over this box
+        </div>
+
+        <script>
+            const box = document.getElementById("box");
+
+            // let the box listen for mouseover
+            box.addEventListener("mouseover", function() {
+                box.innerHTML = "Mouse is over me!";
+            })
+
+            // let the box listen for mouseover
+            box.addEventListener("mouseout", function() {
+                box.innerHTML = "Mouse is out!";
+            })
+        </script>
+    </div>
+
+
+#) Common Mouse Events:
+    👉 click:
+        Fires after both a mousedown and mouseup event occur on the same element with the main mouse
+        button (usually the left).
+
+    👉 mousedown / mouseup:
+    👉 dblclick
+        Fires after two rapid clicks on the same element.
+
+    👉 mousedown / mouseup:
+        These events fire when a mouse button is pressed down (mousedown) or released (mouseup) over an
+        element, respectively.
+
+    👉 mousemove:
+        Fires continuously as the mouse pointer moves over an element, providing positional information
+        (coordinates) about the cursor.
+
+    👉 mouseover:
+        Fires when the pointer moves over an element (or one of its children).
+
+    👉 mouseout:
+        Fires when the pointer leaves an element.
+
+    👉 mouseenter:
+        Similar to mouseover, but fire when the pointer enters an element, not its descendants, making
+        it more sensible for use cases like CSS :hover behavior.
+
+    👉 mouseleave:
+        Similar to mouseout, but fire when the pointer leaves an element, not its descendants, making
+        it more sensible for use cases like CSS :hover behavior.
+
+    👉 contextmenu:
+        Fires when the user attempts to open the context menu, typically by right-clicking.
+
+    👉 wheel:
+        Fires when the mouse wheel is rotated, commonly used for scrolling or zooming functionality.
+
+    👉 drag events:
+        A series of events (dragstart, dragend, dragover, etc.) used for implementing drag-and-drop
+        interfaces.
+
+
+#) Mouse Position:
+    - The MouseEvent interface provides an event object which contains useful properties like pointer
+        coordinates, which mouse button are pressed, and more.
+
+    - eg: Using event.clientX and event.clientY:
+
+        <p id="demo">Move mouse in this window!</p>
+
+        <script>
+            // let document listen for mouse move
+            document.addEventListener("mousemove", function(event) {    
+                let position = document.getElementById("demo");
+                position.innerHTML = `X: ${event.clientX}, Y: ${event.clientY}`
+            });
+        </script>

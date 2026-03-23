@@ -1,0 +1,114 @@
+JavaScript Events:
+
+#) HTML Events:
+    - HTML events are things that happen to HTML elements.
+    - Examples of events:
+        👉 An HTML button is clicked
+        👉 A web page has finished loading
+        👉 The mouse moves over an element
+        👉 A keyboard key is pressed
+        👉 An HTML input field is changed
+    
+    - 💡HTML DOM allows JavaScript to react to HTML events:
+
+
+#) JavaScript Events:
+    - Often, when events happen, you may want to do something.
+    - When JavaScript is used in HTML pages, JavaScript can react on events.
+    - JavaScript lets you execute code when events are detected.
+    - HTML allows event handler attributes, with JavaScript code, to be added to HTML elements.
+    - Syntax:
+
+        With single quotes: <element event='some JavaScript'>
+
+        With double quotes: <element event="some JavaScript">
+    
+    eg: 💡In the following example, an onclick attribute (with code), is added to a <button> element:
+
+        <button onclick="document.getElementById('demo').innerHTML=Date()">The time is?</button>
+        <p id="demo"></p>
+
+        -> In the example above, the JavaScript code changes the content of the element with
+            id="demo".
+    
+    eg: 💡In the next example, the code changes the content of its own element using this.innerHTML:
+        
+        <button onclick="this.innerHTML=Date()">The time is?</button>
+
+
+#) Calling a JavaScript Function:
+    - JavaScript code can often be several lines long.
+    - It is more common to use the event attribute to call a functions:
+
+        <button onclick="displayDate()">The time is?</button>
+
+        <script>
+            function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+            }
+        </script>
+
+
+#) Common HTML Events:
+    - Here is a list of some common HTML events:
+
+    Event	        Description
+--------------------------------------------------------------------------
+    onchange	    An HTML element has been changed
+    onclick	        The user clicks an HTML element
+    onmouseover	    The user moves the mouse over an HTML element
+    onmouseout	    The user moves the mouse away from an HTML element
+    onkeydown	    The user pushes a keyboard key
+    onload	        The browser has finished loading the page
+
+
+#) JavaScript Event Handlers:
+    - An event handler is JavaScript code that runs when an event happens.
+    - Event handlers can be used to handle and verify user input, user actions, and browser actions:
+        👉 Things that should be done every time a page loads
+        👉 Things that should be done when the page is closed
+        👉 Action that should be performed when a user clicks a button
+        👉 Content that should be verified when a user inputs data
+        👉 And more ...
+    
+    - Many different methods can be used to let JavaScript work with events:
+        👉 HTML event attributes can execute JavaScript code directly
+        👉 HTML event attributes can call JavaScript functions
+        👉 You can assign your own event handler functions to HTML elements
+        👉 You can prevent events from being sent or being handled
+        👉 And more ...
+
+
+⚠️⚠️) Using an Event Listener:
+    - Using event attributes like onclick are easy to use.
+    - 💡Nevertheless, using addEventListener() is the recommended way to handle events.
+
+        <div>
+        ❌ Not Recommended
+        <h3>1. Using the onclick attribute:</h3>
+        <button onclick="displayDate()">Display current Date</button>
+        <p id="demo1"></p>
+
+        <script>
+            function displayDate() {
+                let date = document.getElementById("demo1");
+                date.innerHTML = Date();
+            }
+        </script>
+    </div>
+    <hr>
+    <div>
+        ✅ Highly Recommended
+        <h3>2. Using addEventListener() method:</h3>
+        <button id="myBtn">Display current Date</button>
+        <p id="demo2"></p>
+
+        <script>
+            const btn = document.getElementById("myBtn");
+
+            btn.addEventListener("click", function() {
+                let date = document.getElementById("demo2");
+                date.innerHTML = Date();
+            });
+        </script>
+    </div>

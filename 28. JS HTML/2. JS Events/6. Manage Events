@@ -1,0 +1,87 @@
+JavaScript Event Management:
+
+- Event Management is about adding, removing, and controlling events.
+
+#) Adding Events:
+    
+    <button id="btn">Click</button>
+
+    <p id="demo"></p>
+
+    <script>
+        const btn = document.getElementById("btn");
+
+        // Let btn listen for click
+        btn.addEventListener("click", myFunction);
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "Clicked!";
+        }
+    </script>
+
+
+#) Removing Events:
+
+    <h1>JavaScript Events</h1>
+    <h2>Adding and Removing Events</h2>
+
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <button id="test">Test click</button>
+    <p id="demo"></p>
+
+    <script>
+        const test = document.getElementById("test");
+        const remove = document.getElementById("remove");
+        const add = document.getElementById("add");
+
+        function myFunction() {
+            document.getElementById("demo").innerHTML += "Hello!";
+        }
+
+        // Let add listen for click
+        add.addEventListener("click", function () {
+            // Let test listen for click
+            test.addEventListener("click", myFunction);
+        });
+
+        // Let remove listen for click
+        remove.addEventListener("click", function () {
+            // Prevent test listen for click
+            test.removeEventListener("click", myFunction);
+        });
+    </script>
+
+    - ⚠️To remove an event listener, you must use the same named function you used to add it.
+
+
+#) Blocking Events:
+    - prevent default(block a link)
+
+        <h3>Blocking Events</h3>
+        <a href="https://www.w3schools.com/js/js_events_management.asp" id="link">Go to W3Schoold</a>
+        <p id="demo"></p>
+
+        <script>
+            const link = document.getElementById("link");
+
+            // Let link listen for click
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.getElementById("demo").innerHTML = "Link Blocked!";
+            });
+        </script>
+
+
+#) More Examples:
+    onmousedown and onmouseup
+    -> Change an image when a user holds down the mouse button.
+
+    onload
+    -> Display an alert box when the page has finished loading.
+
+    onfocus
+    -> Change the background-color of an input field when it gets focus.
+
+    Mouse Events
+    -> Change the color of an element when the cursor moves over it.

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Event Listener</h1>
+    <div>
+        ❌ Not Recommended
+        <h3>1. Using the onclick attribute:</h3>
+        <button onclick="displayDate()">Display current Date</button>
+        <p id="demo1"></p>
+
+        <script>
+            function displayDate() {
+                let date = document.getElementById("demo1");
+                date.innerHTML = Date();
+            }
+        </script>
+    </div>
+    <hr>
+    <div>
+        ✅ Highly Recommended
+        <h3>2. Using addEventListener() method:</h3>
+        <button id="myBtn">Display current Date</button>
+        <p id="demo2"></p>
+
+        <script>
+            const btn = document.getElementById("myBtn");
+
+            btn.addEventListener("click", function() {
+                let date = document.getElementById("demo2");
+                date.innerHTML = Date();
+            });
+        </script>
+    </div>
+    
+</body>
+</html>

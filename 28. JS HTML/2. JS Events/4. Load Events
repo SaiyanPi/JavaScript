@@ -1,0 +1,68 @@
+JavaScript Load Events:
+
+
+- Load Events happen when the browser has finished loading an element.
+- The two most important load events:
+    👉 DOMContentLoaded (when HTML is ready)
+    👉 load (waits for pages, images, CSS, etc.)
+
+
+
+#) DOMContentLoaded:
+    - 💡The DOMContentLoaded event fires when the browser has fully loaded the HTML and built the
+        Document Object Model (DOM) tree, but has not necessarily finished loading external resources
+        like images and stylesheets.
+    - The DOMContentLoaded event is best for initializing the user interface, attaching event
+        handlers, and performing actions that only require the DOM to be ready.
+
+        <p id="demo"></p>
+
+        <script>
+            // Add Event Listener to document
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("demo").innerHTML = "HTML is loaded!";
+            });
+        </script>
+
+
+#) Window Load:
+    - 💡The load event fires when the entire page has fully loaded, including all dependent resources
+        such as images, stylesheets, and sub-frames.
+    - The load event is best for actions that require all resources available, such as getting the
+        dimensions of an image or checking the browser type.
+
+        <p id="demo"></p>
+
+        <script>
+            // Add Event Listener to window
+            window.addEventListener("load", function () {
+                document.getElementById("demo").innerHTML = "Page is fully loaded!";
+            });
+        </script>
+
+
+#) Other Load Events:
+    - The load event can also be used on other elements that fetch resources (not just pages):
+
+        Tag	        Description
+    ---------------------------------------------------------------------------------------------
+        <img>	    Fires when an image has finished downloading.
+        <script>	Fires when a script has been successfully loaded and executed.
+        <link>	    Fires when a stylesheet has been fully loaded and parsed.
+        <video>	    Fires a variety of media-specific loading events.
+
+
+#) Image Load:
+    
+    <img id="myImg" src="https://www.w3schools.com/images/w3schools_green.jpg" width="120">
+
+    <p id="demo"></p>
+
+    <script>
+        const img = document.getElementById("myImg");
+
+        // Add Event Listener to img
+        img.addEventListener("load", function() {
+            document.getElementById("demo").innerHTML = "Image loaded!";
+        });
+    </script>

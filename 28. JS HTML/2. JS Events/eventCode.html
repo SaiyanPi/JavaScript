@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>Detect Enter using event.code</h3>
+        <input id="in01" type="text" placeholder="Press Enter">
+        <p id="demo"></p>
+
+        <script>
+            const in01 = document.getElementById("in01");
+
+            // let in01 listen for keydown
+            in01.addEventListener("keydown", function(event) {
+                if(event.code === "Enter") {
+                    document.getElementById("demo").innerHTML = "Enter was pressed";
+                }
+            })
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+JavaScript Keyboard Events:
+
+
+- JavaScript provides keyboard events to detect and handle user input from the keyboard, enabling
+    interactive web experiences like form validation, game controls, and keyboard shortcuts.
+- Keyboard Events happen when the user presses a key on the keyboard:
+    👉 keydown (key is pressed down)
+    👉 keyup (key is released)
+    👉 keypress (deprecated)
+
+- ⚠️keypress only fires for character keys (a or 5), not for control keys (alt or backspace).
+- ⚠️Developers are advised to use keydown or keyup instead.
+
+
+#) The keydown Event:
+    - Using event.key 
+
+        <input id="k" type="text" placeholder="Press a Key">
+        <p id="demo"></p>
+
+        <script>
+            const k = document.getElementById("k");
+
+            k.addEventListener("keydown", function(event) {
+                document.getElementById("demo").innerHTML = `You pressed: ${event.key}`;
+            });
+        </script>
+
+
+#) Key Properties:
+    - 💡The KeyboardEvent object provides useful properties to determine which key was involved in
+        the event:
+
+        Property	    Description	                                When pressing Z
+    --------------------------------------------------------------------------------------------------
+        event.key	    Returns the value of the key.               Returns z(or Z if shift is held)
+                        Can vary based on language settings.
+
+        event.code	    Returns the key code.                       Always returns "KeyZ
+                        Constant, regardless of language settings.	
+
+    
+    - ⚠️You can also detect modifier keys using properties like event.ctrlKey, event.shiftKey,
+        event.altKey, and event.metaKey to implement key combinations (e.g., Ctrl + S).
+
+
+#) Detect Enter:
+    - Using event.code
+
+        <div>
+            <h3>Detect Enter using event.code</h3>
+            <input id="in01" type="text" placeholder="Press Enter">
+            <p id="demo"></p>
+
+            <script>
+                const in01 = document.getElementById("in01");
+
+                // let in01 listen for keydown
+                in01.addEventListener("keydown", function(event) {
+                    if(event.code === "Enter") {
+                        document.getElementById("demo").innerHTML = "Enter was pressed";
+                    }
+                })
+            </script>
+        </div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Load</title>
+</head>
+<body>
+    <div>
+        <h3>Image Load</h3>
+        <img id="myImg" src="https://www.w3schools.com/images/w3schools_green.jpg" width="120">
+
+        <p id="demo"></p>
+
+        <script>
+            const img = document.getElementById("myImg");
+
+            // Add Event Listener to img
+            img.addEventListener("load", function() {
+                document.getElementById("demo").innerHTML = "Image loaded!";
+            });
+        </script>
+    </div>
+    
+</body>
+</html>
