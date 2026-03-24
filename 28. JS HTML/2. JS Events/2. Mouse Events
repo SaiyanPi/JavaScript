@@ -41,8 +41,7 @@ JavaScript Mouse Events:
         Fires after both a mousedown and mouseup event occur on the same element with the main mouse
         button (usually the left).
 
-    👉 mousedown / mouseup:
-    👉 dblclick
+    👉 dblclick:
         Fires after two rapid clicks on the same element.
 
     👉 mousedown / mouseup:

@@ -36,7 +36,7 @@ JavaScript HTML DOM EventListener:
         -> ⚠️Note that you don't use the "on" prefix for the event; use "click" instead of "onclick".
     
     
-#) Add an Event Handler to an Element:
+💡💡) Add an Event Handler to an Element:
     - eg: Alert "Hello World!" when the user clicks on an element:
 
         <button id="myBtn">Try it</button>

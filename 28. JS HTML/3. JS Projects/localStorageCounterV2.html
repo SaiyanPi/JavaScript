@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter v2</title>
+</head>
+<body>
+    <div style = "text-align: center;">
+        <h2>Counter v2</h2>
+        <p id="count" style="font-size:50px;">0</p>
+
+        <button id="inc">+</button>
+        <button id="dec">-</button>
+        <button id="reset">Reset</button>
+        <button id="save">Save</button>
+        <button id="load">Load</button>
+        
+
+        <script>
+            let display = document.getElementById("count");
+            let increase = document.getElementById("inc");
+            let decrease = document.getElementById("dec");
+            let reset = document.getElementById("reset");
+            let save = document.getElementById("save");
+            let load = document.getElementById("load");
+            
+            let count = 0;
+            
+            // unlike in the simpler version, we cannot call the method to load the saved counter,
+            // we need to use the Load event(DOMContentLoaded)
+            document.addEventListener("DOMContentLoaded", function() {
+                loadCounter();
+            })
+
+            function updateCounter() {
+                display.innerHTML = count;
+            }
+
+            increase.addEventListener("click", function() {
+                count ++;
+                updateCounter();
+            });
+
+            decrease.addEventListener("click", function() {
+                if(count > 0) {
+                    count --;
+                    updateCounter();
+                } else {
+                    alert("Negative count not Allowed!");
+                } 
+            });
+
+            reset.addEventListener("click", function() {
+                count = 0;
+                updateCounter();
+            });
+
+            save.addEventListener("click", function() {
+                localStorage.setItem("count", count);
+            });
+
+            load.addEventListener("click", function() {
+                loadCounter();  // refering to an external named function
+            });
+
+            function loadCounter() {
+                let saved = localStorage.getItem("count");
+                if(saved !== null) {
+                    count = Number(saved);
+                    updateCounter();
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

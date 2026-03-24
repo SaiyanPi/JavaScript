@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        /* The overlay (background) / hide the modal by default */
+        .modal-overlay {
+            /* display: none; */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Show the modal */
+        .modal-overlay.show {
+            /* display: block; */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* The modal box */
+        .modal-box {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+
+            /* for smooth pop effect */
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        /* Close button */
+        .modal-close {
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            font-size: 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* When visible, scale to normal */
+        .modal-overlay.show .modal-box {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <h2>Modal Popup</h2>
+    <button id="openBtn">Open Modal</button>
+    
+    <div id="modal" class="modal-overlay">
+        <div class="modal-box">
+            <button id="closeBtn" class="modal-close">❎</button>
+            <h3>Hello</h3>
+            <p>This is a modal popup.</p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("modal");
+        const openBtn = document.getElementById("openBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        function openModal() {
+            modal.classList.add("show");
+        }
+
+        function closeModal() {
+            modal.classList.remove("show");
+        }
+
+        // close when clicking outside the modal box
+        modal.addEventListener("click", function(event) {
+            if(event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // close when pressing Escape
+        document.addEventListener("click", function(event) {
+            if(event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

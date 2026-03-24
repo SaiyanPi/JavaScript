@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        input {
+            padding: 8px;
+            width: 260px;
+            margin-bottom: 4px;
+        }
+        .error {
+            color: red;
+            margin: 0;
+        }
+        .ok {
+            color: green;
+            margin: 0;
+        }
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 280px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding-right: 40px; /* creates space for icon */
+            box-sizing: border-box;
+        }
+
+        .input-wrapper button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id="signupForm">
+        <h1>Sign Up Form</h1>
+        <div class="field">
+            <label>Name:</label><br>
+            <input id="name" type="text" placeholder="Your Name">
+            <p id="nameError" class="error"></p>
+        </div>
+
+        <div class="field">
+            <label>Email:</label><br>
+                <input id="email" type="text" placeholder="name@example.com">
+            <p id="emailError" class="error"></p>
+        </div>
+
+        <div class="field">
+            <label>Password:</label><br>
+             <div class="input-wrapper">
+                <input id="password" type="password" placeholder="Min 8 characters">
+                <button type="button" id="togglePassword">👁️</button>
+            </div>
+            <p id="passwordError" class="error"></p>
+        </div>
+
+        <div class="field">
+            <label>Confirm Password:</label><br>
+            <input id="confirm" type="password" placeholder="Repeat password">
+            <p id="confirmError" class="error"></p>
+        </div>
+
+        <p><button type="submit" id="submitBtn">Sign Up</button></p>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        // Create an Object for each Field
+        const form = document.getElementById("signupForm");
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const passInput = document.getElementById("password");
+        const toggle= document.getElementById("togglePassword");
+        const confirmInput = document.getElementById("confirm");
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const passError = document.getElementById("passwordError");
+        const confirmError = document.getElementById("confirmError");
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = true;
+        const result = document.getElementById("result");
+        
+
+        // Function to Display Error
+        function showError(el, message) {
+            el.innerHTML = message;
+        }
+
+        // Function to Clear Error
+        function clearError(el) {
+            el.innerHTML = "";
+        }
+
+        // Function to Validate Name
+        function validateName() {
+            let value = nameInput.value.trim();
+            if (value.length < 2) {
+                showError(nameError, "Name must be at least 2 characters.");
+                return false;
+            }
+            clearError(nameError);
+            return true;
+        }
+
+        // Function to Validate Email
+        function validateEmail() {
+            let value = emailInput.value.trim();
+            if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) {
+                showError(emailError, "Enter a valid email address.");
+                return false;
+            }
+            clearError(emailError);
+            return true;
+        }
+
+        // Function to Validate Password
+        function validatePassword() {
+            let value = passInput.value;
+            const minLength = 8;
+
+            const hasUpper = /[A-Z]/.test(value);
+            const hasLower = /[a-z]/.test(value);
+            const hasNumber = /[0-9]/.test(value);
+            const hasSpecial = /[^A-Za-z0-9]/.test(value);
+
+            if (value.length < minLength) {
+                showError(passError, "Password must be at least 8 characters long");
+                return false;
+            }
+
+            if (!hasUpper) {
+                showError(passError, "Password must include at least one uppercase letter");
+                return false;
+            }
+
+            if (!hasLower) {
+                showError(passError, "Password must include at least one lowercase letter");
+                return false;
+            }
+
+            if (!hasNumber) {
+                showError(passError, "Password must include at least one number");
+                return false;
+            }
+
+            if (!hasSpecial) {
+                showError(passError, "Password must include at least one special character");
+                return false;
+            }
+
+            clearError(passError);
+            return true;
+        }
+
+        // Function to Validate Confirm
+        function validateConfirm() {
+            let pass = passInput.value;
+            let confirm = confirmInput.value;
+            if (confirm === "") {
+                showError(confirmError, "Please confirm your password.");
+                return false;
+            }
+            if (confirm !== pass) {
+                showError(confirmError, "Passwords do not match.");
+                return false;
+            }
+            clearError(confirmError);
+            return true;
+        }
+
+        // Function to Validate Form
+        function validateForm() {
+            let okName = validateName();
+            let okEmail = validateEmail();
+            let okPass = validatePassword();
+            let okConfirm = validateConfirm();
+            return okName && okEmail && okPass && okConfirm;
+        }
+
+        // Function to update the button state
+        function updateSubmitState() {
+            const isValid = validateForm();
+            submitBtn.disabled = !isValid;
+
+            // same as
+            // submitBtn.disabled = true;
+            // const isValid = validateForm();
+            // if(isValid){
+            //     submitBtn.disabled = false;
+            // }
+        }
+
+        // Prevent Default Reloading
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Clear Result
+            result.innerHTML = "";
+
+            // Validate Form
+            if (validateForm()) {
+                result.innerHTML = "Form is valid!";
+                result.className = "ok";
+            } else {
+                result.innerHTML = "Please fix the errors.";
+                result.className = "error";
+            }
+        });
+
+        // toggle password
+        toggle.addEventListener("click", function() {
+            const isHidden = passInput.type === "password";
+
+            passInput.type = isHidden ? "text" : "password";
+            
+        });
+
+        // validate while the user is typing
+        nameInput.addEventListener("input", () => {
+            validateName();
+            updateSubmitState();
+        });
+
+        emailInput.addEventListener("input", () => {
+            validateEmail();
+            updateSubmitState();
+        });
+
+        passInput.addEventListener("input", () => {
+            validatePassword();
+            validateConfirm();
+            updateSubmitState();
+        });
+
+        confirmInput.addEventListener("input", () => {
+            validateConfirm();
+            updateSubmitState();
+        });
+    </script>
+    
+</body>
+</html>

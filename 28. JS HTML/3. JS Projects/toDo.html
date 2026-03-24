@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do</title>
+</head>
+<body>
+    <div style = "text-align: center;">
+        <h2>To-Do List</h2>
+        <input id="task" placeholder="New Task">
+        <button onclick="addTask()">Add</button>
+    
+        <ul id="list"></ul>
+        <button onclick="clearAll()">Clear All</button>
+
+        <script>
+            // Create an Array
+            let tasks = [];
+
+            // Function to display tasks
+            function displayList() {
+                let text = "";
+                for(let i = 0; i < tasks.length; i++) {
+                    text += tasks[i] + " <button onclick='removeTask(" + i + ")'>X</button> <br>";
+                }
+                document.getElementById("list").innerHTML = text;
+            }
+
+            // Function to add tasks
+            function addTask() {
+                let taskInput = document.getElementById("task");
+                let task = taskInput.value;
+                if (task === "") {
+                    return;
+                }
+                tasks.push(task);
+                taskInput.value = "";
+                saveTasks();
+                displayList();
+            }
+            
+            // Function to remove tasks
+            function removeTask(i) {
+                tasks.splice(i, 1);
+                saveTasks();
+                displayList();
+            }
+
+            // Function to clear all tasks
+            function clearAll() {
+                tasks = [];
+                saveTasks();
+                displayList();
+            }
+
+            // Function to save task
+            function saveTasks() {
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+
+            // Function to load saved tasks
+            function loadTasks() {
+                let saved = localStorage.getItem("tasks");
+                if(saved !== null) {
+                    tasks = JSON.parse(saved);
+                }
+                // displayList();
+            }
+
+            // load and display the saved tasks when the page loads
+            loadTasks();
+            displayList();
+        </script>
+    </div>
+    
+</body>
+</html>

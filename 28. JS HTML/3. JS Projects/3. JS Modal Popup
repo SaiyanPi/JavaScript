@@ -1,0 +1,133 @@
+Project - Modal Popup:
+
+- A modal is a popup window that appears on top of the page.
+- The project will build a modal that can be closed in three ways:
+    👉 Click the close button (x)
+    👉 Click outside the modal
+    👉 Press the Escape key
+
+
+#) Project Skills:
+    👉 How to show and hide elements
+    👉 How to use CSS classes with JavaScript
+    👉 How to handle click and keydown events
+    👉 How to detect clicks outside an element
+
+
+#) Full code:
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modal</title>
+        <style>
+            /* The overlay (background) / hide the modal by default */
+            .modal-overlay {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            /* Show the modal */
+            .modal-overlay.show {
+                display: block;
+            }
+
+            /* The modal box */
+            .modal-box {
+                background: white;
+                width: 90%;
+                max-width: 400px;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;
+                position: relative;
+            }
+
+            /* Close button */
+            .modal-close {
+                position: absolute;
+                right: 12px;
+                top: 8px;
+                font-size: 24px;
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Modal Popup</h2>
+        <button id="openBtn">Open Modal</button>
+        
+        <div id="modal" class="modal-overlay">
+            <div class="modal-box">
+                <button id="closeBtn" class="modal-close">❎</button>
+                <h3>Hello</h3>
+                <p>This is a modal popup.</p>
+            </div>
+        </div>
+
+        <script>
+            const modal = document.getElementById("modal");
+            const openBtn = document.getElementById("openBtn");
+            const closeBtn = document.getElementById("closeBtn");
+            
+            openBtn.addEventListener("click", openModal);
+            closeBtn.addEventListener("click", closeModal);
+
+            function openModal() {
+                modal.classList.add("show");
+            }
+
+            function closeModal() {
+                modal.classList.remove("show");
+            }
+
+            // close when clicking outside the modal box
+            modal.addEventListener("click", function(event) {
+                if(event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // close when pressing Escape
+            document.addEventListener("click", function(event) {
+                if(event.key === "Escape") {
+                    closeModal();
+                }
+            });
+        </script>
+    </body>
+
+
+#) JavaScript Explained:
+    1️⃣ Connect Functions to Buttons:
+        -> connect the open and close button to the functions with addEventListener().
+            
+            openBtn.addEventListener("click", openModal);
+            closeBtn.addEventListener("click", closeModal);
+    
+    2️⃣ Connect Function to Clicking Outside:
+        -> check if the click happened on the overlay. Connect it to closeModal():
+
+            modal.addEventListener("click", function(event) {
+                if(event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+        -> 💡💡event.target === modal means: The user clicked on the overlay, not inside the modal box.
+    
+    3️⃣ Connect Function to Escape Key:
+        -> Listen for "Escape" key presses. Connect it to closeModal():
+
+            document.addEventListener("click", function(event) {
+                if(event.key === "Escape") {
+                    closeModal();
+                }
+            });
