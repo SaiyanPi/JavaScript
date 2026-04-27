@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <p id="demo1">Fetch a file to change this text</p>
+    <p id="demo2">Fetch a file to change this text</p>
+
+    <script>
+        // let file = "fetch_info.txt"
+        
+        // fetch(file)
+        // .then(x => x.text())
+        // .then(y => document.getElementById("demo1").innerHTML = y);
+
+        //--------------------------------------------------------------------------------------
+
+        function myDisplay(something) {
+            document.getElementById("demo2").innerHTML = something;
+        }
+
+        getText("fetch_info.txt");
+
+        async function getText(file) {
+            let myObject = await fetch(file);
+            let myText = await myObject.text();
+            myDisplay(myText);
+        }
+    </script>
+</body>
+</html>

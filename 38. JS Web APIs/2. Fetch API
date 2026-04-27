@@ -1,0 +1,45 @@
+JavaScript Fetch API:
+
+- 💡 The Fetch API interface allows web browser to make HTTP requests to web servers.
+- 😀 No need for XMLHttpRequest anymore.
+- fetch() is an ES6 feature.
+- ES6 is fully supported in all modern browsers since June 2017:
+- eg: The example below fetches a file and displays the content:
+
+        <p id="demo">Fetch a file to change this text</p>
+
+        <script>
+            let file = "fetch_info.txt"
+            
+            fetch(file)
+            .then(x => x.text())
+            .then(y => document.getElementById("demo").innerHTML = y);
+        </script>
+
+
+    💡 Since Fetch is based on async and await, the example above might be easier to understand like this:
+
+        <p id="demo2">Fetch a file to change this text</p>
+
+        <script>
+            function myDisplay(something) {
+                document.getElementById("demo2").innerHTML = something;
+            }
+
+            getText("fetch_info.txt");
+
+            async function getText(file) {
+                let x = await fetch(file);
+                let y = await x.text();
+                myDisplay(y);
+            }
+        </script>
+    
+
+    💡 Or even better: Use understandable names instead of x and y:
+
+        async function getText(file) {
+            let myObject = await fetch(file);
+            let myText = await myObject.text();
+            myDisplay(myText);
+        }
