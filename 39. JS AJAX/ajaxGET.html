@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax GET</title>
+</head>
+<body>
+    <div id="demo">
+        <h2>In GET request, you may get a cached result. To avoid this, add a unique ID to the URL</h2>
+        <button type="button" onclick="loadServerDoc()">Load Server File</button>
+    </div>
+
+    <script>
+        function loadServerDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "server.asp?first_name=Henry&last_name=Ford");
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
