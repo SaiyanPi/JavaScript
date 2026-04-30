@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax application</title>
+</head>
+<body>
+    <h2>This example uses a function to display the CD element in an HTML element with id="showCD":</h2>
+    <div id="showCD"></div><br><br>
+    <input type="button" onclick="previous()" value="<<">
+    <input type="button" onclick="next()" value=">>">
+    
+    <script>
+        let i = 0;
+        let len;
+        let cd;
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            const xmlDoc = xhttp.responseXML;
+            cd = xmlDoc.getElementsByTagName("CD");
+            len = cd.length;
+            myFunction(i); 
+        };
+        xhttp.open("GET", "cd_catalog.xml");
+        xhttp.send();
+
+        function myFunction(i) {
+            document.getElementById("showCD").innerHTML =
+                "Title: " + cd[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                "<br>Artist: " + cd[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                "<br>Year: " + cd[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
+        }
+
+        function next() {
+            // console.log("next is fired");
+            if(i < len-1) {
+                i++;
+                myFunction(i);
+            } 
+        }
+
+        function previous() {
+            if(i > 0) {
+                i--;
+                myFunction(i);
+            } 
+        }
+    </script>
+</body>
+</html>

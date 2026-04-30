@@ -1,0 +1,126 @@
+AJAX Database Example:
+
+- AJAX can be used for interactive communication with a database.
+
+#) AJAX Database Example:
+    - The following example will demonstrate how a web page can fetch information from a database with AJAX:
+        
+        1️⃣ ASP.NET Core as a server:
+            - Let's implement AJAX for fetching Expenses from the existing project ExpenseTracker
+
+                👉 server endpoint for getting list of expenses from backedn project ExpenseTracker:
+                    
+                    http://localhost:5167/api/v1/expenses?page=1&pageSize=15&sortBy=Date&sortDesc=true
+                
+                👉 Backend CORS Config:
+
+                    options.AddPolicy("FrontendPolicy", policy =>
+                    {
+                        policy
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials()
+                            .WithOrigins("http://127.0.0.1:5500"); //💡frontend URL(live server URL of ajaxDB.html )
+                    });
+
+                👉 Frontend html: (ajaxDB.html)
+
+                    <body>
+                        <p id="promptOp"></p>
+                        <button onclick="myPrompt()">Save new token</button> <br><br>
+                        <button onclick="loadExpenses()">Load Expenses</button>
+                        <p id="ajaxOp"></p>
+                        <script>
+
+                            // 💡ajax
+                            function loadExpenses(page = 1) {
+
+                                const token = localStorage.getItem("token"); // or wherever you store it
+
+                                const xhttp = new XMLHttpRequest();
+
+                                xhttp.onload = function () {
+                                    if (this.status === 200) {
+                                    const data = JSON.parse(this.responseText);
+
+                                    let html = data.items.map(e =>
+                                        `<li>${e.id} : ${e.title} - ${e.amount}</li>`
+                                    ).join("");
+
+                                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+                                    } else {
+                                    document.getElementById("ajaxOp").innerHTML = "Unauthorized or error, save a new JWT Token first and Try again!";
+                                    }
+                                };
+
+                                xhttp.open(
+                                    "GET",
+                                    `http://localhost:5167/api/v1/expenses?page=${page}&pageSize=15&sortBy=Date&sortDesc=true`
+                                );
+
+                                // Authentication 
+                                xhttp.setRequestHeader("Authorization", "Bearer " + token);
+
+                                xhttp.send();
+                            }
+
+                            // 💡using prompt to get the JWT Token from user
+                            function myPrompt() {
+                                document.getElementById("ajaxOp").innerHTML = "";
+                                let text;
+                                let jwt = prompt("Please enter a new JWT token");
+                                if(jwt == null || jwt == "") {
+                                    text = "You cancelled the propmt.";
+                                } else {
+                                    // call function to save the entered JWT Token.
+                                    saveToken(jwt);
+                                    text = "JWT Token saved."
+                                }
+                                document.getElementById("promptOp").innerHTML = text;
+                            }
+
+                            // 💡function to save the JWT Token
+                            function saveToken(jwt) {
+                                localStorage.setItem("token", jwt);
+                            }
+                        </script>
+                    </body>
+
+                👉 Run the server and login to get the JWT Token. Run the frontend html in live server.
+
+                
+            🧠 Explanation:
+                👉 we used prompt to get the JWT Token from user, prompt function myPrompt() calls the
+                    saveToken() function to save the token in browser's local storage.
+                👉 Inside the ajax function, first we retrieve the saved token from browser's local storage.
+                    Backend/server is returning JSON, not HTML so we need to parse the returned data to convert
+                    raw string onto JS object
+
+                        const data = JSON.parse(this.responseText);
+                
+                👉 Then we transform data into HTML:
+
+                        let html = data.items.map(e =>
+                            `<li>${e.id} : ${e.title} - ${e.amount}</li>`
+                        ).join("");
+                    
+                        💡data.items → array from backend
+                        💡.map() → loops through each expense
+                        💡builds HTML string per item
+                        💡.join("") → combines into one string
+            
+            o/p:    b694ffa3-6fe6-4829-b9b2-00afa171e5f5 : khana - 6000
+                    e08fd67f-a75e-4051-a7b2-6b69f1003ce9 : Motorcycle - 4000
+                    e4079126-e409-4644-9863-d16dec6bfe92 : Motorcycle - 4000
+                    f3554b54-e20d-43bc-b952-f56bc6478906 : Motorcycle - 4000
+                    46c6e6a4-2463-4e6e-8a8a-312395d53b2a : Motorcycle - 4000
+                    6206e15e-2d73-4766-aca7-8850edd03a26 : Motorcycle - 4000
+                    a6339fc8-75e9-424e-8d8f-2106b06e6a33 : Motorcycle - 4000
+                    cdc2a67c-3dee-4b95-962c-0a42f25b41d5 : Motorcycle - 4000
+                    09851ee3-55b1-4658-b5ea-a6cf7eae1f7f : Motorcycle - 4000
+                    5b6bfa9a-7841-436d-8a1f-fb52c44dbfd3 : other - 50
+                    e5ce8475-032e-4bde-8024-bd82e7601bdb : other - 50
+                    8971da65-1d3f-49f7-b145-638c367dad71 : other - 100
+                    b7efb2f3-7a1a-4ac8-a32e-8522c59c66ed : water - 400
+                    7ba68c42-50ab-48e1-b549-21cfeebee361 : drinks - 1700
+                    4dd5b224-fbd8-4792-bf79-e1fe6c5ddae5 : khana - 7000

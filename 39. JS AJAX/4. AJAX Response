@@ -1,0 +1,138 @@
+AJAX - Server Response:
+
+
+#) Server Response Properties:
+
+        Property	        Description
+    -------------------------------------------------------------
+        responseText	    get the response data as a string
+        responseXML	        get the response data as XML data
+    
+    1️⃣ The responseText Property:
+        - 💡The responseText property returns the server response as a JavaScript string, and you can use it
+            accordingly:
+
+            xhttp.onload = function() {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+    
+    2️⃣ The responseXML Property:
+        - 💡The XMLHttpRequest object has an in-built XML parser.
+        - 💡The responseXML property returns the server response as an XML DOM object.
+        - eg: Request the file cd_catalog.xml and parse the response:
+
+            <h2>The XMLHttpRequest Object</h2>
+            <p id="demo"></p>
+            
+            <script>
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    const xmlDoc = this.responseXML;
+                    const x = xmlDoc.getElementsByTagName("ARTIST");
+                    let txt = "";
+                    for (let i = 0; i < x.length; i++) {
+                        txt = txt + x[i].childNodes[0].nodeValue + "<br>";
+                    }
+                    document.getElementById("demo").innerHTML = txt;
+                };
+                xhttp.open("GET", "cd_catalog.xml");
+                xhttp.send();
+            </script>
+
+            (cd_catalog.xml file):
+
+            <?xml version="1.0" encoding="UTF-8"?>
+            <CATALOG>
+                <CD>
+                    <TITLE>Empire Burlesque</TITLE>
+                    <ARTIST>Bob Dylan</ARTIST>
+                    <COUNTRY>USA</COUNTRY>
+                    <COMPANY>Columbia</COMPANY>
+                    <PRICE>10.90</PRICE>
+                    <YEAR>1985</YEAR>
+                </CD>
+
+                <CD>
+                    <TITLE>Hide your heart</TITLE>
+                    <ARTIST>Bonnie Tyler</ARTIST>
+                    <COUNTRY>UK</COUNTRY>
+                    <COMPANY>CBS Records</COMPANY>
+                    <PRICE>9.90</PRICE>
+                    <YEAR>1988</YEAR>
+                </CD>
+
+                <CD>
+                    <TITLE>Greatest Hits</TITLE>
+                    <ARTIST>Dolly Parton</ARTIST>
+                    <COUNTRY>USA</COUNTRY>
+                    <COMPANY>RCA</COMPANY>
+                    <PRICE>9.90</PRICE>
+                    <YEAR>1982</YEAR>
+                </CD>
+
+                <CD>
+                    <TITLE>Still got the blues</TITLE>
+                    <ARTIST>Gary Moore</ARTIST>
+                    <COUNTRY>UK</COUNTRY>
+                    <COMPANY>Virgin records</COMPANY>
+                    <PRICE>10.20</PRICE>
+                    <YEAR>1990</YEAR>
+                </CD>
+            </CATALOG>
+
+
+        💡Explanation: 
+
+            x[i].childNodes[0].nodeValue
+
+            here,   x[0] = <ARTIST>Bob Dylan</ARTIST>
+                    x[0].childNodes[0] = [Object Text]
+                    x[0].childNodes[0].nodeValue = Bob Dylan
+
+
+#) Server Response Methods:
+    
+        Method	                    Description
+    ----------------------------------------------------------------------------------------------------
+        getResponseHeader()	        Returns specific header information from the server resource
+        getAllResponseHeaders()	    Returns all the header information from the server resource
+    
+    1️⃣ The getAllResponseHeaders() Method:
+        - 💡The getAllResponseHeaders() method returns all header information from the server response.
+
+            <pre id="demo"></pre>
+
+            <script>
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("demo").innerHTML =
+                    this.getAllResponseHeaders();
+                }
+                xhttp.open("GET", "ajax_info.txt");
+                xhttp.send();
+            </script>
+
+            o/p:    accept-ranges: bytes
+                    cache-control: public, max-age=0
+                    content-length: 184
+                    content-type: text/plain; charset=UTF-8
+                    date: Wed, 29 Apr 2026 07:13:45 GMT
+                    etag: W/"b8-19dd218236b"
+                    last-modified: Tue, 28 Apr 2026 03:18:10 GMT
+    
+    2️⃣ The getResponseHeader() Method:
+        - 💡The getResponseHeader() method returns specific header information from the server response.
+
+            <p>Last modified: <span id="demo"></span></p>
+
+            <script>
+                const xhttp=new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("demo").innerHTML =
+                    this.getResponseHeader("Last-Modified");
+                }
+                xhttp.open("GET", "ajax_info.txt");
+                xhttp.send();
+            </script>
+
+            o/p:    Last modified: Tue, 28 Apr 2026 03:18:10 GMT

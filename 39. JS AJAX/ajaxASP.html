@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>The XMLHttpRequest Object</h2>
+    <h3>Start typing a name in the input field below:</h3>
+
+    <p>Suggestions: <span id="textHint"></span></p>
+    <p>First Name: <input type="text" id="text1" onkeyup="showHint(this.value)"></p>
+
+    <script>
+        function showHint(string) {
+            if(string.length == 0) {
+                document.getElementById("textHint").innerHTML = "";
+                return;
+            }
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("textHint").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", "gethint.asp?q="+string);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

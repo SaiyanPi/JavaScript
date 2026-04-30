@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax application</title>
+    <style>
+        table,th,td {
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        th,td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>show album information when the user clicks on a CD</h2>
+    <p id="showCD"></p>
+    <table id="tableDisp"></table>
+
+    <script>
+        let cd;
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            const xmlDoc = xhttp.responseXML;
+            cd = xmlDoc.getElementsByTagName("CD");
+            myFunction();
+        }
+        xhttp.open("GET", "cd_catalog.xml");
+        xhttp.send();
+
+        function myFunction() {
+            let table="<tr><th>Artist</th><th>Title</th></tr>";
+            for (let i = 0; i < cd.length; i++) { 
+                table += "<tr onclick='displayCD(" + i + ")'><td>";     // <tr onclick = displayCD(i)>....</tr>
+                table += cd[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue;
+                table += "</td><td>";
+                table += cd[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+                table += "</td></tr>";
+            }
+            document.getElementById("tableDisp").innerHTML = table;
+        }
+
+        function displayCD(i) {
+            document.getElementById("showCD").innerHTML =
+                "Title: " + cd[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                "<br>Artist: " + cd[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                "<br>Year: " + cd[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
+        }
+
+    </script>
+</body>
+</html>

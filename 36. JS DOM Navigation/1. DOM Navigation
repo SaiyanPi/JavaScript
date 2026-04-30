@@ -77,7 +77,7 @@ JavaScript HTML DOM Navigation:
         and:
 
             <head> has one child: <title>
-            <title> has one child (a text node): "DOM Tutorial"
+            <title> has one child (a text node): "DOM Tutorial" 👈🧠
             <body> has two children: <h1> and <p>
             <h1> has one child: "DOM Lesson one"
             <p> has one child: "Hello world!"

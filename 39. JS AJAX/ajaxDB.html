@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="promptOp"></p>
+    <button onclick="myPrompt()">Save new token</button> <br><br>
+    <button onclick="loadExpenses()">Load Expenses</button>
+    <p id="ajaxOp"></p>
+    <script>
+
+        // ajax
+        function loadExpenses(page = 1) {
+
+            const token = localStorage.getItem("token"); // or wherever you store it
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onload = function () {
+                if (this.status === 200) {
+                const data = JSON.parse(this.responseText);
+
+                let html = data.items.map(e =>
+                    `<li>${e.id} : ${e.title} - ${e.amount}</li>`
+                ).join("");
+
+                document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+                } else {
+                document.getElementById("ajaxOp").innerHTML = "Unauthorized or error, save a new JWT Token first and Try again!";
+                }
+            };
+
+            xhttp.open(
+                "GET",
+                `http://localhost:5167/api/v1/expenses?page=${page}&pageSize=15&sortBy=Date&sortDesc=true`
+            );
+
+            // Authentication 
+            xhttp.setRequestHeader("Authorization", "Bearer " + token);
+
+            xhttp.send();
+        }
+
+        // using prompt to get the JWT Token from user
+        function myPrompt() {
+            document.getElementById("ajaxOp").innerHTML = "";
+            let text;
+            let jwt = prompt("Please enter a new JWT token");
+            if(jwt == null || jwt == "") {
+                text = "You cancelled the propmt.";
+            } else {
+                // call function to save the entered JWT Token.
+                saveToken(jwt);
+                text = "JWT Token saved."
+            }
+            document.getElementById("promptOp").innerHTML = text;
+        }
+
+        // function to save the JWT Token
+        function saveToken(jwt) {
+            localStorage.setItem("token", jwt);
+        }
+    </script>
+</body>
+</html>

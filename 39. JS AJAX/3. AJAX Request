@@ -32,7 +32,7 @@ AJAX - XMLHttpRequest:
 
 #) Asynchronous - True or False?
     - Server requests should be sent asynchronously.
-    - ⚠💡The async parameter of the open() method should be set to true:
+    - ⚠️💡The async parameter of the open() method should be set to true:
 
         xhttp.open("GET", "ajax_test.asp", true);
 
@@ -62,7 +62,7 @@ AJAX - XMLHttpRequest:
                 xhttp.open("GET", "demo_get.asp");
                 xhttp.send();
 
-            - ⚠ Here, you may get a cached result. To avoid this, add a unique ID to the URL:
+            - ⚠️ Here, you may get a cached result. To avoid this, add a unique ID to the URL:
             
                 xhttp.open("GET", "server.asp?t=");
                 xhttp.send();
@@ -117,5 +117,5 @@ AJAX - XMLHttpRequest:
             }
         </script>
     
-    - ⚠ odern developer tools are encouraged to warn about using synchronous requests and may throw an
+    - ⚠️ Modern developer tools are encouraged to warn about using synchronous requests and may throw an
         InvalidAccessError exception when it occurs. 
