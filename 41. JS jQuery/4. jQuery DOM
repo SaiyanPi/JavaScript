@@ -1,0 +1,72 @@
+JavaScript / jQuery HTML DOM:
+
+#) Removing HTML Elements:
+    - Remove an HTML element:
+
+    1️⃣ jQuery:
+
+        <h2>Remove an HTML Element</h2>
+        <p id="id01">Hello World!</p>
+        <p id="id02">Hello Nepal!</p>
+
+        <script>
+            $(document).ready(function() {
+                $("#id02").remove(); 👈
+            });
+        </script>
+
+        o/p:    Hello World!
+    
+    2️⃣ JavaScript:
+
+        <h2>Remove an HTML Element</h2>
+        <p id="id01">Hello World!</p>
+        <p id="id02">Hello Nepal!</p>
+
+        <script>
+            document.getElementById("id02").remove(); 👈
+        </script>
+
+        o/p:    Hello World!
+
+
+#) Get Parent Element:
+    - Return the parent of an HTML element:
+
+    1️⃣ jQuery:
+
+        <body>
+            <h2>Getting Parent HTML Element</h2>
+            <p id="01">Hello World!</p>
+            <p id="02">Hello Nepal!</p>
+
+            <p id="demo"></p>
+
+            <script>
+                $(document).ready(function() {
+                    $("#demo").text($("#02").parent().prop("nodeName")); 👈
+                });
+            </script>
+        </body>
+
+        o/p:    Hello World!
+                Hello Nepal!
+                BODY
+    
+    2️⃣ JavaScript:
+
+        <body>
+            <h2>Get Parent HTML Element</h2>
+            <p id="01">Hello World!</p>
+            <p id="02">Hello Nepal!</p>
+
+            <p id="demo"></p>
+
+            <script>
+                document.getElementById("demo").innerHTML = document.getElementById("02").parentNode.nodeName; 👈
+            </script>
+        </body>
+
+        o/p:    Hello World!
+                Hello Nepal!
+                BODY

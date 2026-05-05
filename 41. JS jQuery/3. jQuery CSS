@@ -1,0 +1,93 @@
+JavaScript / jQuery CSS Styles:
+
+#) Hiding HTML Elements:
+    - Hide an HTML Element:
+
+    1️⃣ jQuery:
+
+        <h2>Get Text Content</h2>
+        <p id="01">Hello World!</p>
+        <p id="02">Hello Sweden!</p>
+        <p id="03">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                $("#02").hide(); 👈
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello Japan!
+    
+    2️⃣ JavaScript:
+
+        <h2>Hide HTML Elements</h2>
+        <p id="01">Hello World!</p>
+        <p id="02">Hello Sweden!</p>
+        <p id="03">Hello Japan!</p>
+
+        <script>
+            document.getElementById("02").style.display = "none"; 👈
+        </script>
+
+        o/p:    Hello World!
+                Hello Japan!
+
+
+#) Showing HTML Elements:
+    - Show an HTML Element:
+
+    1️⃣ jQuery:
+
+        <h2>Show HTML Elements</h2>
+        <p id="01" style="display:none">Hello World!</p>
+        <p id="02" style="display:none">Hello Nepal!</p>
+        <p id="03" style="display:none">Hello Japan!</p>
+
+        <script>
+            $(document).ready(function() {
+                $("#02").show(); 👈
+            });
+        </script>
+
+        o/p:    Hello Nepal!
+    
+    2️⃣ JavaScript:
+
+        <h2>Show HTML Elements</h2>
+        <p id="01" style="display:none">Hello World!</p>
+        <p id="02" style="display:none">Hello Nepal!</p>
+        <p id="03" style="display:none">Hello Japan!</p>
+
+        <script>
+            document.getElementById("02").style.display = ""; 👈
+        </script>
+
+        o/p:    Hello Nepal!
+
+
+#) Styling HTML Elements:
+    - Change the font size of an HTML element:
+
+    1️⃣ jQuery:
+
+        <p id="demo">Change the style of an HTML element.</p>
+
+        <script>
+            $(document).ready(function() {
+                $("#demo").css("font-size","35px"); 👈
+            });
+        </script>
+    
+
+    2️⃣ JavaScript:
+
+        <p id="demo">Change the style of an HTML element.</p>
+
+        <script>
+            document.getElementById("demo").style.fontSize = "35px"; 👈
+        </script>
+
+        

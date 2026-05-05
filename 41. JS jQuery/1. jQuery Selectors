@@ -1,0 +1,193 @@
+JavaScript / jQuery DOM Selectors:
+
+#) jQuery vs JavaScript:
+    - jQuery was created in 2006 by John Resig. 💡It was designed to handle Browser Incompatibilities and to
+        simplify HTML DOM Manipulation, Event Handling, Animations, and Ajax.
+    - 💡For more than 10 years, jQuery has been the most popular JavaScript library in the world.
+    - However, after JavaScript Version 5 (2009), most of the jQuery utilities can be solved with a few lines
+        of standard JavaScript:
+
+
+#) Finding HTML Element by Id:
+    - Return the element with id="id01":
+
+        1️⃣ jQuery:
+
+        <h2>Finding HTML Elements by Id</h2>
+        <p id="id01">Hello World!</p>
+        <p id="id02">Hello Sweden!</p>
+        <p id="id03">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                var myElements = $("#id01"); 👈
+                $("#demo").text("The text from the id01 paragraph is: " + myElements[0].innerHTML);
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The text from the id01 paragraph is: Hello World!
+        
+
+        2️⃣ JavaScript:
+
+        <h2>Finding HTML Elements by Id</h2>
+        <p id="id01">Hello World!</p>
+        <p id="id02">Hello Sweden!</p>
+        <p id="id03">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const myElement = document.getElementById("id01"); 👈
+            document.getElementById("demo").innerHTML = 
+                "The text from the id01 paragraph is: " + myElement.innerHTML;
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The text from the id01 paragraph is: Hello World!
+
+
+#) Finding HTML Elements by Tag Name:
+    - Return all <p> elements:
+
+        1️⃣ jQuery:
+
+        <h2>Finding HTML Elements by Tag Name</h2>
+        <p>Hello World!</p>
+        <p>Hello Sweden!</p>
+        <p>Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+        $(document).ready(function() {
+            var myElements = $("p"); 👈
+            $("#demo").text("The text in the first paragraph is: " + myElements[0].innerHTML);
+        });
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The text in the first paragraph is: Hello World!
+        
+
+        2️⃣ JavaScript:
+
+        <h2>Finding HTML Elements by Tag Name</h2>
+        <p>Hello World!</p>
+        <p>Hello Sweden!</p>
+        <p>Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const myElements = document.getElementsByTagName("p"); 👈
+            document.getElementById("demo").innerHTML = 
+            "The text in the first paragraph is: " + myElements[0].innerHTML;
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The text in the first paragraph is: Hello World!
+
+
+
+#) Finding HTML Elements by Class Name:
+    - Return all elements with class="intro".
+
+        1️⃣ jQuery:
+
+        <h2>Finding HTML Elements by Class Name</h2>
+        <p class="intro">Hello World!</p>
+        <p class="intro">Hello Sweden!</p>
+        <p class="intro">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                var myElements = $(".intro"); 👈
+                $("#demo").text("The first paragraph with class='intro' is: " + myElements[0].innerHTML);
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The first paragraph with class='intro' is: Hello World!
+        
+
+        2️⃣ JavaScript:
+
+        <h2>Finding HTML Elements by Class Name</h2>
+        <p class="intro">Hello World!</p>
+        <p class="intro">Hello Sweden!</p>
+        <p class="intro">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const myElements = document.getElementsByClassName("intro"); 👈
+            document.getElementById("demo").innerHTML = 
+            "The first paragraph with class='intro' is: " + myElements[0].innerHTML;
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The first paragraph with class='intro' is: Hello World!
+
+
+#) Finding HTML Elements by CSS Selectors:
+    - Return a list of all <p> elements with class="intro".
+
+        1️⃣ jQuery:
+
+        <h2>Finding HTML Elements by Query Selector</h2>
+        <p class="intro">Hello World!</p>
+        <p class="intro">Hello Sweden!</p>
+        <p class="intro">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                var myElements = $("p.intro"); 👈
+                $("#demo").text("The first paragraph with class='intro' is: " + myElements[0].innerHTML);
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The first paragraph with class='intro' is: Hello World!
+        
+
+        2️⃣ JavaScript:
+
+        <h2>Finding HTML Elements by Query Selector</h2>
+        <p class="intro">Hello World!</p>
+        <p class="intro">Hello Sweden!</p>
+        <p class="intro">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const myElements = document.querySelectorAll("p.intro"); 👈
+            document.getElementById("demo").innerHTML = 
+            "The first paragraph with class='intro' is: " + myElements[0].innerHTML;
+        </script>
+
+        o/p:    Hello World!
+                Hello Sweden!
+                Hello Japan!
+                The first paragraph with class='intro' is: Hello World!

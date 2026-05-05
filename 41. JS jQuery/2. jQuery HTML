@@ -1,0 +1,150 @@
+JavaScript / jQuery HTML Elements:
+
+
+#) Set Text Content:
+    - Set the inner text of an HTML element:
+
+    1️⃣ jQuery:
+
+        <h2>Setting Text Content</h2>
+        <p id="01">Hello Earth!</p>
+        <p id="02">Hello World!</p>
+
+        <script>
+            $(document).ready(function() {
+                var myElement = $("#01"); 👈
+                myElement.text("Hello Nepal!"); 👈
+            });
+        </script>
+
+        o/p:    Hello Nepal!
+                Hello World!
+    
+    2️⃣ JavaScript:
+
+        <h2>Setting Text Content</h2>
+        <p id="01">Hello Earth!</p>
+        <p id="02">Hello World!</p>
+
+        <script>
+            const myElement = document.getElementById("01"); 👈
+            myElement.textContent = "Hello Nepal!"; 👈
+        </script>
+
+        o/p:    Hello Nepal!
+                Hello World!
+
+
+
+#) Get Text Content:
+    - Get the inner text of an HTML element:
+
+    1️⃣ jQuery:
+
+        <h2>Get Text Content</h2>
+        <p id="01">Hello World!</p>
+        <p id="02">Hello Nepal!</p>
+        <p id="03">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                var myText = $("#02").text(); 👈
+                $("#demo").text(myText);  👈
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello Nepal!
+                Hello Japan!
+                Hello Nepal!
+    
+    2️⃣ JavaScript:
+
+        <h2>Get Text Content</h2>
+        <p id="01">Hello World!</p>
+        <p id="02">Hello Nepal!</p>
+        <p id="03">Hello Japan!</p>
+
+        <p id="demo"></p>
+
+        <script>
+            const myText = document.getElementById("02").textContent; 👈
+            document.getElementById("demo").innerHTML = myText; 👈
+        </script>
+
+        o/p:    Hello World!
+                Hello Nepal!
+                Hello Japan!
+                Hello Nepal!
+
+
+#) Set HTML Content:
+    - Set the HTML content of an element:
+
+    1️⃣ jQuery:
+
+        <h2>Set HTML</h2>
+        <div id="01"><p>Hello World!</p></div>
+        <div id="02"><p>Hello Nepal!</p></div>
+
+        <p id="demo"></p>
+
+        <script>
+            $(document).ready(function() {
+                $("#02").html("<p>Hello World!</p>"); 👈
+            });
+        </script>
+
+        o/p:    Hello World!
+                Hello World!
+    
+    2️⃣ JavaScript:
+
+        <h2>Set HTML</h2>
+        <div id="01"><p>Hello World!</p></div>
+        <div id="02"><p>Hello Nepal!</p></div>
+
+        <p id="demo"></p>
+
+        <script>
+            document.getElementById("02").innerHTML = "<p>Hello World!</p>"; 👈
+        </script>
+
+        o/p:    Hello World!
+                Hello World!
+
+
+#) Get HTML Content:
+    - Get the HTML content of an element:
+
+    1️⃣ jQuery:
+
+        <h2>Set HTML</h2>
+        <div id="01"><p>Hello World!</p></div>
+        <div id="02"><p>Hello Nepal!</p></div>
+
+        <script>
+            $(document).ready(function() {
+                var content = $("#02").html(); 👈
+                $("#01").html(content); 👈
+            });
+        </script>
+
+        o/p:    Hello Nepal!
+                Hello Nepal!
+    
+    2️⃣ JavaScript:
+
+        <h2>Setting HTML</h2>
+        <div id="01"><p>Hello World!</p></div>
+        <div id="02"><p>Hello Sweden!</p></div>
+
+        <script>
+            const content = document.getElementById("02").innerHTML; 👈
+            document.getElementById("01").innerHTML = content; 👈
+        </script>
+
+        o/p:    Hello Nepal!
+                Hello Nepal!
