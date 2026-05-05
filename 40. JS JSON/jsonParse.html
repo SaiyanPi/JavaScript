@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON.parse()</title>
+</head>
+<body>
+    <h2>Parse the data with JSON.parse(), and the data becomes a JavaScript object.</h2>
+    <p id="demo"></p>
+
+    <script>
+        // Imagine we received this text from a web server: '{"name":"John", "age":30, "city":"New York"}'
+        const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+        document.getElementById("demo").innerHTML = obj.name;   // John
+    </script>
+</body>
+</html>

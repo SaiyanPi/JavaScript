@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON DB</title>
+</head>
+<body>
+    <h2>Creating New Expense</h2>
+    <p id="promptOp"></p>
+    <button onclick="myPrompt()">Save new token</button> <br><br>
+    <button onclick="loadExpenses()">Create Expenses</button>
+    <p id="ajaxOp"></p>
+
+    <script>
+        const expense = {
+            "title": "from js client",
+            "description": "bike servicing",
+            "amount": 2000,
+            "categoryId": "885d07fb-3471-4eab-9561-d596a40c103c"
+        }
+
+        // ajax
+        function loadExpenses() {
+
+            const token = localStorage.getItem("tokenPOST"); // or wherever you store it
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onload = function () {
+                if (this.status === 200 || this.status === 201) {
+                    const data = JSON.parse(this.responseText);
+
+                    const html = `<li>${data.id} : ${data.title} - ${data.amount}</li>`;
+
+                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+
+                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+                } else {
+                    document.getElementById("ajaxOp").innerHTML = 
+                    `<p style="color:red;">
+                        Error ${this.status}: ${this.responseText}
+                    </p>`;
+                }
+            };
+
+            xhttp.open(
+                "POST",
+                `http://localhost:5167/api/v1/expenses`
+            );
+
+            xhttp.setRequestHeader("Content-Type", "application/json");
+            // Authentication 
+            xhttp.setRequestHeader("Authorization", "Bearer " + token);
+
+            xhttp.send(JSON.stringify(expense));
+        }
+
+        // using prompt to get the JWT Token from user
+        function myPrompt() {
+            document.getElementById("ajaxOp").innerHTML = "";
+            let text;
+            let jwt = prompt("Please enter a new JWT token");
+            if(jwt == null || jwt == "") {
+                text = "You cancelled the propmt.";
+            } else {
+                // call function to save the entered JWT Token.
+                saveToken(jwt);
+                text = "JWT Token saved."
+            }
+            document.getElementById("promptOp").innerHTML = text;
+        }
+
+        // function to save the JWT Token
+        function saveToken(jwt) {
+            localStorage.setItem("tokenPOST", jwt);
+        }
+    </script>
+</body>
+</html>

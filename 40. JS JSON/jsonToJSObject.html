@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <h2>Converting a JSON Text to a JavaScript Object</h2>
+    <p id="demo"></p>
+
+    <script>
+        // using string for simplicity
+        let text = '{ "employees" : [' +
+        '{ "firstName":"John" , "lastName":"Doe" },' +
+        '{ "firstName":"Anna" , "lastName":"Smith" },' +
+        '{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+        // converting JSON strings into JavaScript objects
+        const obj = JSON.parse(text);
+
+        document.getElementById("demo").innerHTML =
+            obj.employees[1].firstName + " " + obj.employees[1].lastName;   // Anna Smith
+    </script>
+</body>
+</html>

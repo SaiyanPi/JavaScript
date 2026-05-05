@@ -1,0 +1,213 @@
+JSON ASP.NET Core:
+
+#) Fetching Data:
+    - 💡In ASP.NET Core, you don’t manually convert objects and array to JSON like you often do in PHP.
+        👉 In PHP:
+            
+            echo json_encode($data);
+        
+        👉 In ASP.NET Core:
+            
+            return Ok(data);
+
+            -> Takes your C# object
+            -> Passes it to the JSON serializer
+            -> Converts it to JSON
+            -> Sends it as HTTP response
+
+    - 💡The conversion is handled automatically by Syatem.Text.Json.
+    - eg: 
+        1️⃣ Controller endpoint:
+
+            [HttpGet]
+            public async Task<IActionResult> GetAll(
+                [FromQuery] PagedResultRequestV1 pagedRequest,
+                CancellationToken cancellationToken = default)
+            {
+                var query = new GetAllExpensesQuery(new PagedQuery(
+                    pagedRequest.page,
+                    pagedRequest.pageSize,
+                    pagedRequest.sortBy,
+                    pagedRequest.sortDesc));
+                var expenses = await _mediator.Send(query, cancellationToken);
+
+                var response = new PagedResultResponseV1<ExpenseResponseV1>
+                {
+                    Items = _mapper.Map<List<ExpenseResponseV1>>(expenses.Items),
+                    
+                    TotalCount = expenses.TotalCount,
+                    Page = expenses.Page,
+                    PageSize = expenses.PageSize,
+                    TotalPages = expenses.TotalPages,
+                    HasNext = expenses.HasNext,
+                    HasPrevious = expenses.HasPrevious
+                };
+                return Ok(response);
+            }
+
+    
+        2️⃣ Endpoint Output:
+
+            {
+            "items": [
+                {
+                    "id": "b694ffa3-6fe6-4829-b9b2-00afa171e5f5",
+                    "title": "khana",
+                    "description": "cold drinks and hard",
+                    "amount": 6000.00,
+                    "date": "2026-01-19T10:03:26.3777207",
+                    "categoryId": "885d07fb-3471-4eab-9561-d596a40c103c",
+                    "categoryName": "Food",
+                    "budgetId": "2fe135ab-fa1f-43de-b242-2840136089d1",
+                    "budgetName": "Family Dinner",
+                    "userId": "a0f2a9cc-d1f2-4eaf-adf6-71409445d181"
+                },
+                {
+                    "id": "46c6e6a4-2463-4e6e-8a8a-312395d53b2a",
+                    "title": "Motorcycle",
+                    "description": "bike servicing",
+                    "amount": 4000.00,
+                    "date": "2026-01-12T04:20:37.2495024",
+                    "categoryId": "885d07fb-3471-4eab-9561-d596a40c103c",
+                    "categoryName": "Food",
+                    "budgetId": null,
+                    "budgetName": null,
+                    "userId": "a0f2a9cc-d1f2-4eaf-adf6-71409445d181"
+                },
+                {
+                    "id": "7ba68c42-50ab-48e1-b549-21cfeebee361",
+                    "title": "drinks",
+                    "description": "smoothie",
+                    "amount": 1700.00,
+                    "date": "2026-01-10T12:22:56.3803688",
+                    "categoryId": "885d07fb-3471-4eab-9561-d596a40c103c",
+                    "categoryName": "Food",
+                    "budgetId": "2fe135ab-fa1f-43de-b242-2840136089d1",
+                    "budgetName": "Family Dinner",
+                    "userId": "a0f2a9cc-d1f2-4eaf-adf6-71409445d181"
+                }
+                .
+                .
+                .
+                ],
+                "totalCount": 19,
+                "page": 1,
+                "pageSize": 15,
+                "totalPages": 2,
+                "hasNext": true,
+                "hasPrevious": false
+            }
+        
+        3️⃣ JS Client: ( see ajaxDB.hrml for full code )
+
+            // ajax
+            function loadExpenses(page = 1) {
+
+                const token = localStorage.getItem("token"); // or wherever you store it
+
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.onload = function () {
+                    if (this.status === 200) {
+                    const data = JSON.parse(this.responseText); 👈
+
+                    let html = data.items.map(e =>
+                        `<li>${e.id} : ${e.title} - ${e.amount}</li>`
+                    ).join("");
+
+                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+                    } else {
+                    document.getElementById("ajaxOp").innerHTML = "Unauthorized or error, save a new JWT Token first and Try again!";
+                    }
+                };
+
+                xhttp.open(
+                    "GET",
+                    `http://localhost:5167/api/v1/expenses?page=${page}&pageSize=15&sortBy=Date&sortDesc=true`
+                );
+
+                // Authentication 
+                xhttp.setRequestHeader("Authorization", "Bearer " + token);
+
+                xhttp.send();
+            }
+
+            o/p:    b694ffa3-6fe6-4829-b9b2-00afa171e5f5 : khana - 6000
+                    e08fd67f-a75e-4051-a7b2-6b69f1003ce9 : Motorcycle - 4000
+                    e4079126-e409-4644-9863-d16dec6bfe92 : Motorcycle - 4000
+                    .
+                    .
+                    .
+
+
+
+#) Creating/ Adding Data:
+
+    1️⃣ Backend Controller endpoint for creating expense:
+
+        // POST: api/v1/expenses
+        [Authorize(Policy = ExpensePermission.Create)]
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateExpenseRequestV1 createRequest, CancellationToken cancellationToken = default)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var mappedRequest = _mapper.Map<CreateExpenseDto>(createRequest);
+
+            var command = new CreateExpenseCommand(mappedRequest);
+
+            var newExpense = await _mediator.Send(command, cancellationToken);
+
+            var mappedNewExpense = _mapper.Map<ExpenseResponseV1>(newExpense);
+            return CreatedAtAction(nameof(GetById), new { id = mappedNewExpense.Id }, mappedNewExpense);
+        }
+    
+
+    2️⃣ JS Client:
+
+        // object to send
+        const expense = {
+            "title": "from js client",
+            "description": "bike servicing",
+            "amount": 2000,
+            "categoryId": "885d07fb-3471-4eab-9561-d596a40c103c"
+        }
+
+        // ajax
+        function loadExpenses() {
+
+            const token = localStorage.getItem("tokenPOST"); // or wherever you store it
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onload = function () {
+                if (this.status === 200 || this.status === 201) {
+                    const data = JSON.parse(this.responseText);
+
+                    const html = `<li>${data.id} : ${data.title} - ${data.amount}</li>`;
+
+                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+
+                    document.getElementById("ajaxOp").innerHTML = `<ul>${html}</ul>`;
+                } else {
+                    document.getElementById("ajaxOp").innerHTML = 
+                    `<p style="color:red;">
+                        Error ${this.status}: ${this.responseText}
+                    </p>`;
+                }
+            };
+
+            xhttp.open(
+                "POST",
+                `http://localhost:5167/api/v1/expenses`
+            );
+
+            xhttp.setRequestHeader("Content-Type", "application/json"); 👈
+            // Authentication 
+            xhttp.setRequestHeader("Authorization", "Bearer " + token);
+
+            xhttp.send(JSON.stringify(expense));    👈
+        }
+
+        o/p:    15576cc7-bee5-4a8f-a77f-f19a4b0afd77 : from js client - 2000

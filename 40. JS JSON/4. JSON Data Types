@@ -1,0 +1,53 @@
+JSON Data Types:
+
+
+- ✅ Valid Data Types:
+    👉 a string
+    👉 a number
+    👉 an object (JSON object)
+    👉 an array
+    👉 a boolean
+    👉 null
+
+- ❌ JSON values cannot be one of the following data types:
+    👉 a function
+    👉 a date
+    👉 undefined
+
+#) - ✅ Valid Data Types:
+    
+    1️⃣ SON Strings:
+        - Strings in JSON must be written in double quotes.
+        - eg
+                {"name":"John"}
+    
+    2️⃣ JSON Numbers:
+        - Numbers in JSON must be an integer or a floating point.
+        - eg:
+                {"age":30}
+    
+    3️⃣ JSON Objects:
+        - Values in JSON can be objects.
+        - eg:   
+                {
+                    "employee":{"name":"John", "age":30, "city":"New York"}
+                }
+        
+        - ⚠️ Objects as values in JSON must follow the JSON syntax.
+    
+    4️⃣ JSON Arrays:
+        - Values in JSON can be arrays.
+        - eg: 
+                {
+                "employees":["John", "Anna", "Peter"]
+                }
+    
+    5️⃣ JSON Booleans
+        - Values in JSON can be true/false.
+        - eg:   
+                {"sale":true}
+    
+    6️⃣ JSON null
+        - Values in JSON can be null.
+        - eg: 
+                {"middlename":null}
