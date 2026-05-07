@@ -1,0 +1,532 @@
+Chart.js:
+
+- 💡Chart.js is an free JavaScript library for making HTML-based charts. It is one of the simplest
+    visualization libraries for JavaScript, and comes with the many built-in chart types:
+    👉 Scatter Plot
+    👉 Line Chart
+    👉 Bar Chart
+    👉 Pie Chart
+    👉 Donut Chart
+    👉 Bubble Chart
+    👉 Area Chart
+    👉 Radar Chart
+    👉 Mixed Chart
+
+
+#) How to Use Chart.js?
+    1️⃣ Add a link to the providing CDN (Content Delivery Network):
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0">
+        </script>
+    
+    2️⃣ Add a <canvas> to where in the HTML you want to draw the chart:
+
+        <canvas>
+            id="myChart" style="width:100%;max-width:700px"
+        </canvas>
+
+        ⚠️ The canvas element must have a unique id.
+    
+    👉 Typical Bar Chart Syntax:
+
+        const myChart = new Chart("myChart", {
+            type: "bar",
+            data: {},
+            options: {}
+        });
+    
+    👉 Typical Line Chart Syntax:
+
+        const myChart = new Chart("myChart", {
+            type: "line",
+            data: {},
+            options: {}
+        });
+
+
+
+#) Bar Charts:
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+            const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            const yValues = [55, 49, 44, 24, 15];
+            const barColors = ["red", "green","blue","orange","brown"];
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display: false},
+                        title: {
+                            display: true,
+                            text: "World Wine Production 2018",
+                            font: {size: 16}
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+    👉 Only Blue Bars and zoom out effect:
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+        <body>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+            <script>
+                const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                const yValues = [55, 49, 44, 24, 15];
+                let barColors = "blue";
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "World Wine Production 2018",
+                            font: { size: 16 }
+                        }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                    }
+                });
+            </script>
+        </body>
+
+    👉 Color Shades and zoom out effect:
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+        <body>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+            <script>
+                const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                const yValues = [55, 49, 44, 24, 15];
+                const barColors = ["rgba(255,0,0,1.0)",
+                "rgba(255,0,0,0.8)",
+                "rgba(255,0,0,0.6)",
+                "rgba(255,0,0,0.4)",
+                "rgba(255,0,0,0.2)"
+                ];
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: "World Wine Production 2018",
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            </script>
+        </body>
+
+    👉 Horizontal Bars: Set Index axiss to y
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+        <body>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+            <script>
+                const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                const yValues = [55, 49, 44, 24, 15];
+                const barColors = ["red", "green","blue","orange","brown"];
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: "World Wine Production 2018",
+                                font: {size:16}
+                            }
+                        },
+                    }
+                });
+            </script>
+        </body>
+
+
+
+#) Pie Charts:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+            const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            const yValues = [55, 49, 44, 24, 15];
+            const barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+            ];
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display:true},
+                        title: {
+                            display: true,
+                            text: "World Wine Production 2018",
+                            font: {size:16}
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+
+
+#) Doughnut Charts:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <script>
+            const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            const yValues = [55, 49, 44, 24, 15];
+            const barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+            ];
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display:true},
+                        title: {
+                            display: true,
+                            text: "World Wine Production 2018",
+                            font: {size:16}
+                        }
+                    }
+                }
+            });
+        </script>
+
+    </body>
+
+
+
+#) Scatter Plots:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        <script>
+            const xyValues = [
+                {x:50, y:7},
+                {x:60, y:8},
+                {x:70, y:8},
+                {x:80, y:9},
+                {x:90, y:9},
+                {x:100, y:9},
+                {x:110, y:10},
+                {x:120, y:11},
+                {x:130, y:14},
+                {x:140, y:14},
+                {x:150, y:15}
+            ];
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: "scatter",
+                data: {
+                    datasets: [{
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgb(0,0,255)",
+                        data: xyValues
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display:false},
+                        title: {
+                            display: true,
+                            text: "House Prices vs. Size",
+                            font: {size:16}
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+
+
+#) Line Graphs:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <script>
+            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "rgba(0,0,255,1.0)",
+                        borderColor: "rgba(0,0,255,0.1)",
+                        data: yValues
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {display:false},
+                        title: {
+                            display: true,
+                            text: "House Prices vs. Size",
+                            font: {size:16}
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+
+    👉 If you set the borderColor to zero, you can scatter plot the line graph:
+
+        borderColor: "rgba(0,0,0,0)",
+
+
+
+#) Multiple Lines:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        const xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{ 
+            data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+            borderColor: "red",
+            pointRadius: 2,
+            tension: 0.4,
+            }, { 
+            data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+            borderColor: "green",
+            pointRadius: 2,
+            tension: 0.4,
+            }, { 
+            data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+            borderColor: "blue",
+            pointRadius: 2,
+            tension: 0.4,
+            }]
+        },
+        options: {
+            plugins: {
+            legend: { display: false }
+            }
+        }
+        });
+    </script>
+
+
+
+#) Linear Graphs:
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+        const xValues = [];
+        const yValues = [];
+        generateData("x * 2 + 7", 0, 10, 0.5);
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    pointRadius: 1,
+                    borderColor: "rgba(255,0,0,0.5)",
+                    data: yValues
+                }]
+            },    
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'y = x * 2 + 7',
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                    x: {title: { display: true, text: 'x' }},
+                    y: {title: { display: true, text: 'sin(x)'}}
+                }
+            }
+        });
+
+        function generateData(value, i1, i2, step = 1) {
+        for (let x = i1; x <= i2; x += step) {
+            xValues.push(x);
+            yValues.push(eval(value));
+        }
+        }
+        </script>
+    </body>
+
+
+
+#) Function Graphs:
+    - Same as Linear Graph. Just change the generateData parameter(s):
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <body>
+
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <script>
+            const xValues = [];
+            const yValues = [];
+            generateData("Math.sin(x)", 0, 10, 0.5);
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'y = sin(x)',
+                        data: yValues,
+                        borderColor: 'rgba(0,0,255,0.5)',
+                        pointRadius: 1,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'y = sin(x)',
+                            font: { size: 16 }
+                        },
+                    },
+                    scales: {
+                        x: {title: { display: true, text: 'x' }},
+                        y: {title: { display: true, text: 'sin(x)'}}
+                    }
+                }
+            });
+
+            function generateData(value, i1, i2, step = 1) {
+                for (let x = i1; x <= i2; x += step) {
+                    yValues.push(eval(value));
+                    xValues.push(x);
+                }
+            }
+        </script>
+    </body>
