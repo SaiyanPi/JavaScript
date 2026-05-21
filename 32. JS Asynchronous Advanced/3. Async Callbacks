@@ -11,7 +11,7 @@ JavaScript Callbacks:
 
 #) What is a Callback Function?
     - A callback function is a function passed as an argument into another function.
-    - The callback function is intended to be executed later, typically when a specific event occurs
+    - 💡The callback function is intended to be executed later, typically when a specific event occurs
         or an asynchronous operation completes.
     - This pattern keeps your function flexible.
     - This is how many older JavaScript APIs worked.
